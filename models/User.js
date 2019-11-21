@@ -1,14 +1,14 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema; //(just gettin the funtion by the name, but it is a parenthesis)
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema; 
 
 const userSchema = new Schema({
-    userID: String,
-    name: String,
-    email: String,
-    password: String,
-    location: [String],
-    keywords: [Strings],
-    dayPlan: [Obj]
+    username: { type: String, required: true, unique: true }, // username = email with @ restriction
+    password: { type: String, required: true },
+    location: { type: String, enum: ["Sants", "Gracia", "Poble Nou", "Raval"] },
+    keywords: { type: [] },
+    dayPlan: { type: [] }
 });
-const User = mongoose.model('User', userSchema);
+
+
+const User = mongoose.model("User", userSchema);
 module.exports = User;
