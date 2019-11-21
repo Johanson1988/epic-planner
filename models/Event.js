@@ -15,5 +15,5 @@ const eventSchema = new Schema({
 });
 
 
-const User = mongoose.model("Event", userSchema);
+const Event = mongoose.model("Event", eventSchema);
 module.exports = Event;
