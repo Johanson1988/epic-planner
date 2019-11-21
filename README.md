@@ -6,7 +6,7 @@ PROJECT 2
 
 **Main elements**
 
-Epic planner is a urban micro-planner that allows you to create a legendary route in Barcelona on a specific day and area.  Its features include an array of leisure options located in the desired area: concerts, cultural events, cafes and bars.  
+Epic planner is a urban micro-planner that allows you to create a legendary route in Barcelona on a specific day and area.  Its features include an array of leisure options located in the desired area: concerts, cultural events, cafes and bars, with links to MeetUp event pages for more information.   
 
 ----
 
