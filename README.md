@@ -45,17 +45,17 @@ Epic planner is a urban micro-planner that allows you to create a legendary rout
 
 | **Method** | **Route**               | **Description**                                              | Request  - Body                                              |
 | ---------- | ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `GET`      | `/`                     | Main page route.  Renders home `index` view                  |                                                              |
-| `GET`      | `/login`                | Renders `login` form view.                                   |                                                              |
-| `POST`     | `/login`                | Sends Login form data to the server.                         | { email, password }                                          |
-| `GET`      | `/signup`               | Renders `signup` form view.                                  |                                                              |
-| `POST`     | `/signup`               | Sends Sign Up info to the server and creates user in the DB. | {  email, password  }                                        |
-| `GET`      | `/private/main`         | *Private route*. Render the `day-plan` view.                 |                                                              |
+| `GET`      | `/`                     | Main page route.  Renders home `day-plan` view                  |                                                              |
+| `GET`      | `/login`                | Renders `login` form in `signin` view.                                   |                                                              |
+| `POST`     | `/login`                | Sends `login` form data to the server.                         | { email, password }                                          |
+| `GET`      | `/signup`               | Renders `signup` form `signin` view.                                |                                                              |
+| `POST`     | `/signup`               | Sends `Sign Up` info to the server and creates user in the DB. | {  email, password  }                                        |
+| `GET`      | `/private/day-main`         | *Private route*. Render the `day-plan` view.                 |                                                              |
 |            |                         |                                                              |                                                              |
 | `GET`      | `/private/edit-profile` | *Private route*. Renders `edit-profile` form view.           |                                                              |
 | `PUT`      | `/private/edit-profile` | *Private route*. Sends edit-profile info to server and updates user in DB. | { email, password, userName], location, avatarUrl, [keyWords] } |
-| `POST`     | `/private/search/`      | *Private route*. Renders `event-list`.                       | { date, location, activity type }                            |
-| `GET`      | `/:eventid`             | *Private route*. Render `event-details` view for the particular event/place. |                                                              |
+| `POST`     | `/private/search-events/`      | *Private route*. Renders `event-list`.                       | { date, location, activity type }                            |
+| `GET`      | `/:eventid`             | *Private route*. Render `event-card` view for the particular event/place. |                                                              |
 | `DELETE`   | `/private/:eventId`     | *Private route*. Deletes `event` from `day-plan`.            |                                                              |
 
 ## 
@@ -66,10 +66,13 @@ Epic planner is a urban micro-planner that allows you to create a legendary rout
 
 ```js
 {
+  userID: String,
   name: String,
   email: String,
   password: String,
+  location: [String],
   keywords: [Strings],
+  dayPlan: [Obj]
 }
 ```
 
@@ -78,11 +81,15 @@ Epic planner is a urban micro-planner that allows you to create a legendary rout
 ```js
 {
   eventId: String,
+  fullAddress: [String], 
   location: String,
   date: date,
+  time: date,
   duration: String,
-  price: String
-  type: String
+  price: String,
+  type: String,
+  coordinates: {floatX,floatY}main`
+  meetupLink: URL
   
 }
 ```
@@ -92,9 +99,12 @@ Epic planner is a urban micro-planner that allows you to create a legendary rout
 ```js
 {
   placeId: String,
+  fullAddress: [String], 
   location: String,
   type: String,
-  Opening schedule: [String]
+  openingSchedule: [String]
+  coordinates: {floatX,floatY}
+  webLink: URL
 }
 ```
 
@@ -110,7 +120,7 @@ Epic planner is a urban micro-planner that allows you to create a legendary rout
 
 ### Git
 
-[Repository Link]()
+[Repository Link](https://github.com/Johanson1988/epic-planner/)
 
 [Deploy Link]()
 
