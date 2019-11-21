@@ -10,5 +10,5 @@ const userSchema = new Schema({
     keywords: [Strings],
     dayPlan: [Obj]
 });
-const User = mongoose.model('User', authorSchema);
+const User = mongoose.model('User', userSchema);
 module.exports = User;
