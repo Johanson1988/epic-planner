@@ -6,7 +6,7 @@ PROJECT 2
 
 **Main elements**
 
-Epic planner is a urban micro-planner that allows you to create a legendary route in Barcelona on a specific day and area.  Its features include an array of leisure options located in the desired area: concerts, cultural events, cafes and bars, with links to MeetUp event pages for more information.   
+Epic planner is a urban micro-planner that allows you to create a legendary route in Barcelona on a specific day and area.  Its features include an array of leisure options located in the desired area: concerts, cultural events, cafes and bars, with links to [MeetUp](https://meetup.com) event pages for more information.   
 
 ----
 
@@ -54,7 +54,7 @@ Epic planner is a urban micro-planner that allows you to create a legendary rout
 |            |                         |                                                              |                                                              |
 | `GET`      | `/private/edit-profile` | *Private route*. Renders `edit-profile` form view.           |                                                              |
 | `PUT`      | `/private/edit-profile` | *Private route*. Sends edit-profile info to server and updates user in DB. | { email, password, userName], location, avatarUrl, [keyWords] } |
-| `POST`     | `/private/search-events/`      | *Private route*. Renders `event-list`.                       | { date, location, activity type }                            |
+| `POST`     | `/private/select-events/`      | *Private route*. Renders `event-list`.                       | { date, location, activity type }                            |
 | `GET`      | `/:eventid`             | *Private route*. Render `event-card` view for the particular event/place. |                                                              |
 | `DELETE`   | `/private/:eventId`     | *Private route*. Deletes `event` from `day-plan`.            |                                                              |
 
@@ -87,7 +87,7 @@ Epic planner is a urban micro-planner that allows you to create a legendary rout
   time: date,
   duration: String,
   price: String,
-  type: String,
+  category: String,
   coordinates: {floatX,floatY}main`
   meetupLink: URL
   
@@ -101,7 +101,7 @@ Epic planner is a urban micro-planner that allows you to create a legendary rout
   placeId: String,
   fullAddress: [String], 
   location: String,
-  type: String,
+  category: String,
   openingSchedule: [String]
   coordinates: {floatX,floatY}
   webLink: URL
