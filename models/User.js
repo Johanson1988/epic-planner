@@ -8,8 +8,7 @@ const userSchema = new Schema({
     password: { type: String, required: true },
     location: { type: String, enum: ["Barceloneta", "Forum", "Gracia", "Horta-Guinardó", "Les Corts", "Poble Nou","Port Olimpic", "Port Vell", "Sant Andreu", "Sants", "Sant Martí", "Sarrià-Tibidabo" ] },
     keywords: { type: [] },
-    dayPlan: { type: [] }
-    // TODO README > dayplan [eventID]
+    agenda: { type: [] } //array of dayplan objects
     
 },{
     timestamps: {
