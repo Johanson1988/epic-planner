@@ -19,8 +19,6 @@ router.post('/signup', (req, res, next) => {
         return;  
     }
     if (zxcvbn(password).score < 3) {
-        console.log('here');
-        
         res.render('./signin', {errorMessage: "The Password is too weak, please try again"}); // insert here
         return;
       }
