@@ -7,7 +7,6 @@ const dayPlanSchema = new Schema({
     name:    { type: String, required: true},
     startingTime: { type: String, required: true },
     endingTime: { type: String, required: true },
-    location: { type: String, enum: ["Barceloneta", "Forum", "Gracia", "Horta-Guinardó", "Les Corts", "Poble Nou","Port Olimpic", "Port Vell", "Sant Andreu", "Sants", "Sant Martí", "Sarrià-Tibidabo" ] },
     events:{ type : [] }
     
 },{
