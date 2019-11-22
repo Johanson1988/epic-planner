@@ -39,9 +39,30 @@ router.post('/signup', (req, res, next) => {
             .catch((err) => console.error(err));
 });
 
-
-
-
-
+router.post('/login',(req, res, next) => {
+    const { email, password: enteredPassword } =req.body;
+    if( email === '' || enteredPassword === '') {
+        res.render('./signin', {errorMessage: 'Username or password can not be empty'}); // <--- insert here
+        return;
+    }
+    User.findOne( {email} )
+        .then( emailFromDb => {
+            if (!emailFromDb) {
+                res.render('./signin', {errorMessage: 'User or password incorrect'}); // <<<<---- insert here
+                return;
+            }
+            //check password
+            const passwordCorrect = bcrypt.compareSync(enteredPassword, emailFromDb.password);
+            
+            if(passwordCorrect) {
+                req.session.currentUser = emailFromDb;
+                res.redirect('/');
+            } else {
+                res.render('./signin', {errorMessage: "User of pw incorrect"}) // <<<<---- insert here
+                return;
+            }
+        })
+        .catch( (err) => console.error(err));
+})
 
 module.exports = router;
