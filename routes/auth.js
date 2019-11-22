@@ -12,10 +12,19 @@ const saltRounds = 10;
 router.post('/signup', (req, res, next) => {
     
     const {fullName, email, password, location } = req.body;
+    console.log(req.body);
     
-
-   
-   
+    if (email === '' || password ==='') {
+        res.render('./signin', {errorMessage:"Username or password cannot be empty."}); // insert here
+        return;  
+    }
+    if (zxcvbn(password).score < 3) {
+        console.log('here');
+        
+        res.render('./signin', {errorMessage: "The Password is too weak, please try again"}); // insert here
+        return;
+      }
+    // TODO Postman post request
     
 })
 
