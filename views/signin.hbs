@@ -19,11 +19,35 @@
 <article class= "sign-up">
     <h2>Sign up form</h2>
 <form action="/auth/signup"  method= "POST">
-    <label for="email">email</label>
+    <label for="full-name">Who are you?</label>
+    <input  type= "text" name= "full-name" required>
+    
+    <label for="email">Email</label>
     <input  type= "email" name= "email" required>
 
     <label for="password">Password</label>
     <input type= "password" name= "password" required>
+
+    <label for="location">Location</label>
+    <select name= "location" required> 
+        <option value = "Barceloneta">Barceloneta</option>
+        <option value = "Forum">Forum</option>
+        <option value = "Gracia">Gracia</option>
+        <option value = "Horta-Guinardó-">Horta-Guinardó</option>
+        <option value = "Les Corts">Les Corts</option>
+        <option value = "Poble Nou">Poble Nou</option>
+        <option value = "Port Olimpic">Port Olimpic</option>
+        <option value = "Port Vell">Port Vell</option>
+        <option value = "Sant Andreu">Sant Andreu</option>
+        <option value = "Sants">Sants</option>
+        <option value = "Sant Martí">Sant Martí</option>
+        <option value = "Sarrià-Tibidabo">Sarrià-Tibidabo</option>
+    </select>
+
+    <label for="password">Password</label>
+    <input type= "password" name= "password" required>
+
+ 
 
     <button type="submit">Log in</button>
 
