@@ -11,6 +11,11 @@ const userSchema = new Schema({
     dayPlan: { type: [] }
     // TODO README > dayplan [eventID]
     
+},{
+    timestamps: {
+        createdAt:'created_at',
+        updatedAt:'updated_at'
+    }
 });
 
 

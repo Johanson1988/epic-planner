@@ -12,6 +12,12 @@ const eventSchema = new Schema({
     category: { type: String, enum: ["culture", "music", "workshop"], required: true  },
     coordinates: {type: {type: String, type: String} },
     meetupLink: {type: String}
+},
+{
+    timestamps: {
+        createdAt:'created_at',
+        updatedAt:'updated_at'
+    }
 });
 
 

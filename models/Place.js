@@ -9,7 +9,14 @@ const placeSchema = new Schema({
     category: { type: String, enum: ["eat", "cocktail", "dance", "coffee"], required: true  },
     coordinates: {type: {type: String, type: String} },
     webLink: {type: String}
-});
+},
+{
+    timestamps: {
+        createdAt:'created_at',
+        updatedAt:'updated_at'
+    }
+}
+);
 
 
 const Place = mongoose.model("Place", placeSchema);
