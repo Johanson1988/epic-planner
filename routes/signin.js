@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const signinRouter = require('./signin');
 
-
-router.use('/signin', signinRouter);
-
+// We're here /signin/
 router.get('/', (req, res, next) => {
-    res.render('./day-plan') 
+    
+    res.render('./signin') 
+   
 });
 
 module.exports = router;

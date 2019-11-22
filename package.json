@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./bin/www.js"
+    "start": "node ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,8 @@
     "express-session": "^1.17.0",
     "hbs": "^4.0.6",
     "mongoose": "^5.7.12",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.0"
