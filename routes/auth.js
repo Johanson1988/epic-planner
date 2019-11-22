@@ -3,11 +3,21 @@ const router = express.Router();
 const zxcvbn = require('zxcvbn');
 
 
-// bycrpt
+// bcrypt
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-router.post('')
+
+// we're in /auth/
+router.post('/signup', (req, res, next) => {
+    
+    const {fullName, email, password, location } = req.body;
+    
+
+   
+   
+    
+})
 
 
 

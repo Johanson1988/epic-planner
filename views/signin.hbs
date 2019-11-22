@@ -19,8 +19,8 @@
 <article class= "sign-up">
     <h2>Sign up form</h2>
 <form action="/auth/signup"  method= "POST">
-    <label for="full-name">Who are you?</label>
-    <input  type= "text" name= "full-name" required>
+    <label for="fullName">Who are you?</label>
+    <input  type= "text" name= "fullName" required>
     
     <label for="email">Email</label>
     <input  type= "email" name= "email" required>
@@ -43,13 +43,24 @@
         <option value = "Sant Martí">Sant Martí</option>
         <option value = "Sarrià-Tibidabo">Sarrià-Tibidabo</option>
     </select>
+    <section id='user-keywords'>
+        <p>Select your areas of interest</p>
+        <label for="music">Music</label>
+        <input type= "checkbox" name= "music">
 
-    <label for="password">Password</label>
-    <input type= "password" name= "password" required>
+        <label for="culture">Culture</label>
+        <input type= "checkbox" name= "culture">
+
+        <label for="food">Food</label>
+        <input type= "checkbox" name= "food">
+
+
+    </section>
+    
 
  
 
-    <button type="submit">Log in</button>
+    <button type="submit">Submit</button>
 
 </form>
 
