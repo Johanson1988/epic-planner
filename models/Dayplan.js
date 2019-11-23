@@ -5,8 +5,8 @@ const dayPlanSchema = new Schema({
     
     date:     { type: Date, required: true},
     name:    { type: String, required: true},
-    startingTime: { type: String, required: true },
-    endingTime: { type: String, required: true },
+    startingTime: { type: String},
+    endingTime: { type: String},
     events:{ type : [] }
     
 },{
@@ -17,5 +17,5 @@ const dayPlanSchema = new Schema({
 });
 
 
-const User = mongoose.model("User", userSchema);
-module.exports = User;
+const DayPlan = mongoose.model("dayPlan", dayPlanSchema);
+module.exports = DayPlan;

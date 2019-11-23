@@ -1,0 +1,44 @@
+<article>
+
+    <h2>{{selectedDate}}</h2>
+    <form action="" method="POST">
+        <label for="name">Name</label>
+            <input type="text" name='name' value='{{name}}' required>
+        <label for="location">Location</label>
+        <select name= "location" required> 
+        <option value = "Barceloneta">Barceloneta</option>
+        <option value = "Forum">Forum</option>
+        <option value = "Gracia">Gracia</option>
+        <option value = "Horta-Guinardó-">Horta-Guinardó</option>
+        <option value = "Les Corts">Les Corts</option>
+        <option value = "Poble Nou">Poble Nou</option>
+        <option value = "Port Olimpic">Port Olimpic</option>
+        <option value = "Port Vell">Port Vell</option>
+        <option value = "Sant Andreu">Sant Andreu</option>
+        <option value = "Sants">Sants</option>
+        <option value = "Sant Martí">Sant Martí</option>
+        <option value = "Sarrià-Tibidabo">Sarrià-Tibidabo</option>
+    </select>
+    <section id='user-keywords'>
+        <p>Select your areas of interest</p>
+        <label for="music">Music</label>
+        <input type= "checkbox" name= "music">
+
+        <label for="culture">Culture</label>
+        <input type= "checkbox" name= "culture">
+
+        <label for="food">Food</label>
+        <input type= "checkbox" name= "food">
+    </section>
+        {{#if listEvents}}
+            {{#each listEvents}}
+
+            {{/each}}
+        {{else}}
+            <div id='no-events-message'>
+                <p>Tourist Go Home!!!</p>
+            </div>
+        {{/if}}
+        <button>SAVE</button>
+    </form>
+</article>

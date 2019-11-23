@@ -18,7 +18,7 @@ router.use('/signin', signinRouter);
 
 //Home
 router.get('/', (req, res, next) => {
-    res.render('./day-plan') 
+    res.render('./home') 
 });
 
 module.exports = router;
