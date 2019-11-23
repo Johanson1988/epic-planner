@@ -84,19 +84,44 @@ function listEvents(auth) {
   }, (err, res) => {
     if (err) return console.log('The API returned an error: ' + err);
     const events = res.data.items;
-    console.log(res.data.items);
+    populateDb(res.data.items);
     
-    // if (events.length) {
-    //   console.log('Upcoming 10 events:');
-    //   events.map((event, i) => {
-    //     const start = event.start.dateTime || event.start.date;
-    //     console.log(`${start} - ${event.summary}`);
-    //   });
-    // } else {
-    //   console.log('No upcoming events found.');
-    // }
+
   });
 }
 })
 
 module.exports = router;
+
+function populateDb(data) {
+  const mongoose = require('mongoose');
+  const Event = require('./../../models/Event');
+
+  const dbName = 'epic-planner-db';
+  const dbUrl = 'mongodb://localhost:27017/';
+  
+  
+  mongoose
+      .connect(dbUrl + dbName, {useNewUrlParser: true, useUnifiedTopology:true})
+          .then( mongoEntry => {
+              const eventsArray =[];
+
+              data.forEach((googleEvent) => {
+                const event = new Event({
+                  eventName: googleEvent.summary,
+                  fullAddress: googleEvent.location,
+                  location: 'Sants',
+                  date: googleEvent.start.dateTime,
+                  required: 60,
+                  category:'Culture',
+                  meetupLink: googleEvent.description
+                })
+                eventsArray.push(event);
+              })
+              
+              console.log(eventsArray.length);
+          })
+          .catch(err => {
+              console.error('Error connecting to mongo', err)
+          });
+}
