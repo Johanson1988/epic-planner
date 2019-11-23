@@ -11,7 +11,10 @@ router.post('/', (req,res,next) => {
     const {name} = req.body;
     console.log(_id,name);
     DayPlan.updateOne({_id}, {$set: {name: name}})
-        .then(()=>console.log('Updated day plan'))
+        .then(()=>{
+            console.log('Updated day plan');
+            res.redirect('/');
+        })
         .catch((err) => console.error(err))
 })
 

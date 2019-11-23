@@ -4,11 +4,6 @@ const router = express.Router();
 const DayPlan = require('./../../models/Dayplan');
 const User = require('../../models/User');
 
-if (typeof localStorage === "undefined" || localStorage === null) {
-    var LocalStorage = require('node-localstorage').LocalStorage;
-    localStorage = new LocalStorage('./scratch');
-  }
-
 router.post('/', (req,res,next) => {
     const {'day-plan-date': selectedDate} = req.body;
     
@@ -17,7 +12,7 @@ router.post('/', (req,res,next) => {
         date:selectedDate,
         events:[],
     });
-    console.log('session',req.session.currentUser);
+    
     newDayPlan.save(err=> {
         if (err) {
             console.error(err);
@@ -28,17 +23,11 @@ router.post('/', (req,res,next) => {
             const dayPlanId = newDayPlan._id;
             User.updateOne({_id:userId}, {$push: {agenda: newDayPlan._id}})
                 .then(() => {
-                    console.log('Day added to agenda');
-                 
-                       
-                      localStorage.setItem('dayPlanId', dayPlanId);
-                      
+                    console.log('Day added to agenda');                      
                     res.render('./dayplan/edit-dayplan',{selectedDate,dayPlanId});
                 })
                 .catch((err) => console.error(err));
     }
-    });
-    
+    }); 
 });
-
 module.exports = router;
