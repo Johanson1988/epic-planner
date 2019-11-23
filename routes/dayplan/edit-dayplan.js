@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const DayPlan = require('./../../models/Dayplan');
+const User = require('../../models/User');
 
 router.post('/', (req,res,next) => {
     console.log(req.body);
@@ -15,6 +16,10 @@ router.post('/', (req,res,next) => {
         events:[],
     });
     console.log('session',req.session.currentUser);
+    User.updateOne({_id})
+        .then((user) => {
+            
+        })
 });
 
 module.exports = router;
