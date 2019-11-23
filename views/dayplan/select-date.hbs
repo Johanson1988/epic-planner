@@ -3,4 +3,8 @@
         <input type="date" name='day-plan-date'>
         <button type="submit">Select Date</button>
     </form>
+    {{#if errorMessage}}
+    <p>{{errorMessage}}</p>
+    <!--TODO Insert here -->
+    {{/if}}
 </article>
