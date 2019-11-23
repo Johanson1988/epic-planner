@@ -33,7 +33,7 @@ router.post('/', (req,res,next) => {
                        
                       localStorage.setItem('dayPlanId', dayPlanId);
                       
-                    res.render('./dayplan/edit-dayplan',{selectedDate});
+                    res.render('./dayplan/edit-dayplan',{selectedDate,dayPlanId});
                 })
                 .catch((err) => console.error(err));
     }
