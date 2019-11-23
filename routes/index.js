@@ -5,6 +5,8 @@ const router = express.Router();
 const authRouter = require('./auth');
 const signinRouter = require('./signin');
 const dayplanRouter = require('./dayplan/index-dayplan');
+const googleApiRouter = require('./google-api/api-call');
+
 
 
 //Authorization
@@ -19,6 +21,8 @@ router.use((req,res,next)=> {
 //Dayplan
 router.use('/dayplan', dayplanRouter);
 
+//API Call
+router.use('/google-api', googleApiRouter);
 
 //Home
 router.get('/', (req, res, next) => {
