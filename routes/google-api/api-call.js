@@ -105,23 +105,25 @@ function populateDb(data) {
       .connect(dbUrl + dbName, {useNewUrlParser: true, useUnifiedTopology:true})
           .then( mongoEntry => {
               const eventsArray =[];
-
+              
               data.forEach((googleEvent) => {
+
                 const event = new Event({
                   eventName: googleEvent.summary,
                   fullAddress: googleEvent.location,
                   location: 'Sants',
                   date: googleEvent.start.dateTime,
-                  required: 60,
-                  category:'Culture',
+                  duration: 60,
+                  category:'culture',
                   meetupLink: googleEvent.description
                 })
-                eventsArray.push(event);
-              })
-              
-              console.log(eventsArray.length);
+                if (!event.location) console.log(event);
+                
+                //TODO function to check whether the event exist before saving it
+                event.save();
+              })                            
           })
           .catch(err => {
-              console.error('Error connecting to mongo', err)
+              console.error('Error connecting to events mongo', err)
           });
 }
