@@ -18,10 +18,11 @@ router.post('/signup', (req, res, next) => {
         res.render('./signin', {errorMessage:"Username or password cannot be empty."}); // insert here
         return;  
     }
-    if (zxcvbn(password).score < 3) {
-        res.render('./signin', {errorMessage: "The Password is too weak, please try again"}); // insert here
-        return;
-      }
+    // if (zxcvbn(password).score < 3) {
+    //     res.render('./signin', {errorMessage: "The Password is too weak, please try again"}); // insert here
+    //     return;
+    //   }
+    //TODO activate password Strength
     
       User.findOne( {email} )
             .then (emailFromDb => {

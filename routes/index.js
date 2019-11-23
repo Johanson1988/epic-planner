@@ -7,13 +7,17 @@ const signinRouter = require('./signin');
 const dayplanRouter = require('./dayplan/index-dayplan');
 
 
-//Dayplan
-router.use('/dayplan', dayplanRouter);
-
-
 //Authorization
 router.use('/auth', authRouter);
 router.use('/signin', signinRouter);
+
+router.use((req,res,next)=> {
+    if (req.session.currentUser) next();
+    else res.redirect('/signin');
+} )
+
+//Dayplan
+router.use('/dayplan', dayplanRouter);
 
 
 //Home

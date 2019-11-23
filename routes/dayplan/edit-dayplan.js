@@ -14,15 +14,7 @@ router.post('/', (req,res,next) => {
         date:selectedDate,
         events:[],
     });
-    newDayPlan.save(err=> {
-        if (err) {
-            console.error(err);
-            res.render('dayplan/edit-dayplan',{errorMessage:'ERROR'}); //TODO Insert here <---------            
-        }else {
-            console.log('Added New Dayplan to the dataBase');
-            res.redirect('/');
-        }
-    });
+    console.log('session',req.session.currentUser);
 });
 
 module.exports = router;

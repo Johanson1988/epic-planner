@@ -16,6 +16,5 @@ const dayPlanSchema = new Schema({
     }
 });
 
-
-const DayPlan = mongoose.model("dayPlan", dayPlanSchema);
+const DayPlan = mongoose.model("DayPlan", dayPlanSchema);
 module.exports = DayPlan;
