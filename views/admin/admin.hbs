@@ -1,1 +1,53 @@
 <h1>ADMIN</h1>
+
+<section>
+    <h2>Events List</h2>
+    {{#each eventsList}}
+    <article>
+        <form action="/admin/update/event" method="POST">
+            <label for="_id">_ID</label>
+            <input type="text" value='{{this._id}}'>
+            <br>
+            <label for="eventName">EventName</label>
+            <input type="text"  name='eventName' value='{{this.eventName}}'>
+            <br>
+            <label for="fullAddress">FullAddress</label>
+            <input type="text"  name='fullAddress' value='{{this.fullAddress}}'>
+            <br>
+            <label for="location">Location</label>
+            <input type="text" name='location' value='{{this.location}}'>
+            <br>
+            <label for="date">Date</label>
+            <input type="text" name='date' value='{{this.date}}'>
+            <br>
+            <label for="startTime">StartTime</label>
+            <input type="text" name='startTime' value='{{this.startTime}}'>
+            <br>
+            <label for="endTime">EndTime</label>
+            <input type="text" name='endTime' value='{{this.endTime}}'>
+            <br>
+            <label for="price">Price</label>
+            <input type="text" name='price' value='{{this.price}}'>
+            <br>
+            <label for="category">Category</label>
+            <input type="text" name='category' value='{{this.category}}'>
+            <br>
+            <label for="coordinates">Coordinates</label>
+            <input type="text" name='coordinates' value='{{this.coordinates}}'>
+            <br>
+            <label for="meetupLink">MeetupLink</label>
+            <input type="text"name='meetupLink'  value='{{this.meetupLink}}'>
+            <br>
+            <label for="created_at">created_at</label>
+            <input type="text" value='{{this.created_at}}'>
+            <br>
+            <label for="updated_at">updated_at</label>
+            <input type="text" value='{{this.updated_at}}'>
+            <br>
+
+            <button>Update</button>
+        </form>
+    </article>
+    {{/each}}
+</section>
+

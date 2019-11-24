@@ -9,7 +9,7 @@ const dbUrl = 'mongodb://localhost:27017/';
 const DayPlan = require('./../models/Dayplan');
 const User = require('../models/User');
 
-const evenList = [];
+const eventsList = [];
 const dayPlanList = [];
 const userList = [];
 const sessionList = [];
@@ -24,9 +24,8 @@ router.get('/', (req, res, next) => {
             .then( () => {
                 Event.find()
                     .then(events =>{
-                        evenList.push(events);
-                        console.log(events.length);
-                        res.render('./admin/admin');
+                        events.forEach(event =>eventsList.push(event));                         
+                        res.render('./admin/admin', {eventsList});
                     })
             })
         
