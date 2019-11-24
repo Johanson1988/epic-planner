@@ -38,9 +38,28 @@
             <h4>{{this.eventName}}</h4>
             <p>{{this.meetupLink}}</p>
            </div> 
+
            <div class="event-btns-container">
-               <button id="add-event">+</button>
-               <button id="event-info">info</button>
+               <button id='add-event-{{this._id}}' class="add-event">+</button>
+               <script>
+                   var addEventBtn = document.querySelector(`#add-event-{{this._id}}`);
+                   addEventBtn.addEventListener('click', async (e) => {
+                        e.preventDefault();
+                        try {
+                            // /dayplan/save?_id={{dayPlanId}}
+                            const response = await fetch(`/dayplan/save-event?eventId={{this._id}}&dayPlanId={{../dayPlanId}}`, {
+                            method: 'post'
+                            });
+                            console.log('Saved!', response);
+                        }
+                        catch(err) {
+                            console.error(`Error: ${err}`);
+                        }
+                      
+                   });
+               </script>
+
+               <button id=`event-info-{{this._id}}` class="event-info">info</button>
            </div>
             </div>
             {{/each}}
