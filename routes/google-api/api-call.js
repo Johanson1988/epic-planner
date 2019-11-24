@@ -107,13 +107,15 @@ function populateDb(data) {
               const eventsArray =[];
               
               data.forEach((googleEvent) => {
-
+                console.log(googleEvent);
+                
                 const event = new Event({
                   eventName: googleEvent.summary,
                   fullAddress: googleEvent.location,
                   location: 'Sants',
-                  date: googleEvent.start.dateTime,
-                  duration: 60,
+                  date: googleEvent.start.dateTime.slice(0,10),
+                  startTime: googleEvent.start.dateTime.slice(11,16),
+                  endTime: googleEvent.end.dateTime.slice(11,16),
                   category:'culture',
                   meetupLink: googleEvent.description
                 })
