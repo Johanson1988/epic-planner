@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+body {
+    font-family:  'Open Sans', sans-serif;
+    font-size: 14px;
+}
+/*
+Font family
+
+font-family: 'Open Sans', sans-serif;
+
+color palette:
+    redTone: #ec2c32;
+    blueTone: #3972f5;
+    BlackTone: #000;
+    */
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    padding-left:14px;
+}
+
+h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: lighter;
+    font-size: 22px;       
+}
+
+.signin-forms {
+    display:flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+.signin-forms form {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+.signin-forms input {
+    margin-bottom:8px;
+}
+
+
+#signup-button {
+
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+nav img {
+    width: 50px;        
+}
+
+.no-display {
+    display:none;
+}

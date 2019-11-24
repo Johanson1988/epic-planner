@@ -3,7 +3,7 @@
 
 <h1>Sign in</h1>
 
-<article class= "log-in">
+<article class= "log-in signin-forms">
     <h2>Log in form</h2>
 <form action="/auth/login"  method= "POST">
     <label for="email">Email</label>
@@ -20,8 +20,38 @@
 {{/if}}
 </article>
 
+<div id='signup-button'>
+    <p>New to Epic-Planner?</p>
+    <p id='signin-screen-status'>SIGN UP</p>
+</div>
+<script>
+    const showSignUpButton = document.querySelector('#signup-button');
+    showSignUpButton.addEventListener('click', () => {
+        const loginForm = document.querySelector('.log-in');
+        const signupForm = document.querySelector('.sign-up');
+        const status = document.querySelector('#signin-screen-status');
+        const message = document.querySelector('#signup-button p')
+        
+        if (status.innerHTML==='SIGN UP') {
+            loginForm.setAttribute('class', 'no-display log-in signin-forms');
+            signupForm.removeAttribute('class', 'no-display');
+            signupForm.setAttribute('class', ' sign-up signin-forms');
 
-<article class= "sign-up">
+            status.innerHTML = 'LOG IN'
+            message.innerHTML = 'Already have an account?'
+        }else {
+            loginForm.removeAttribute('class', 'no-display');
+            loginForm.setAttribute('class', 'log-in signin-forms');
+            signupForm.setAttribute('class', 'no-display sign-up signin-forms');
+            status.innerHTML = 'SIGN UP'
+            message.innerHTML = 'New to Epic-Planner?'
+        }
+        
+
+    })
+</script>
+
+<article class= "sign-up signin-forms no-display">
     <h2>Sign up form</h2>
 
 <form action="/auth/signup"  method= "POST">
