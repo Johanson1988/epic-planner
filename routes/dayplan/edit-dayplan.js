@@ -46,15 +46,12 @@ router.post('/', (req,res,next) => {
                                 else return -1;
                             }
                             else return -1;                                                    
-                    });
-                    console.log(eventsByDate);
-                    
-
+                    })
                     
                     User.updateOne({_id:userId}, {$push: {agenda: newDayPlan._id}})
                     .then(() => {
                         console.log('Day added to agenda');                      
-                        res.render('./dayplan/edit-dayplan',{selectedDate,dayPlanId});
+                        res.render('./dayplan/edit-dayplan',{selectedDate,dayPlanId, eventsByDate});
                     })
                     .catch((err) => console.error(err));
                     

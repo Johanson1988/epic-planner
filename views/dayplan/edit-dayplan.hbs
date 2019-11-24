@@ -30,15 +30,27 @@
         <label for="food">Food</label>
         <input type= "checkbox" name= "food">
     </section>
-        {{#if listEvents}}
-            {{#each listEvents}}
-
+    <section class='ordered-results'>
+        {{#if eventsByDate}}
+            {{#each eventsByDate}}
+        <div class="event-result">
+           <div class="event-text-container">
+            <h4>{{this.eventName}}</h4>
+            <p>{{this.meetupLink}}</p>
+           </div> 
+           <div class="event-btns-container">
+               <button id="add-event">+</button>
+               <button id="event-info">info</button>
+           </div>
+            </div>
             {{/each}}
         {{else}}
             <div id='no-events-message'>
                 <p>Tourist Go Home!!!</p>
             </div>
         {{/if}}
+    </section>
+        
         <button>SAVE</button>
     </form>
 </article>
