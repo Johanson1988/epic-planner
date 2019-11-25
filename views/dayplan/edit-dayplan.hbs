@@ -27,10 +27,10 @@
         <input type= "checkbox" name= "music" id='music-filter'>
 
         <label for="culture">Culture</label>
-        <input type= "checkbox" name= "culture">
+        <input type= "checkbox" name= "culture" id='culture-filter'>
 
         <label for="food">Food</label>
-        <input type= "checkbox" name= "food">
+        <input type= "checkbox" name= "food" id='food-filter'>
     </section>
     <section class='ordered-results'>
         {{#if eventsByDate}}
@@ -39,6 +39,7 @@
            <div class="event-text-container">
             <h4>{{this.eventName}}</h4>
             <p>{{this.meetupLink}}</p>
+            <p>{{this.category}}</p>
            </div> 
 
            <div class="event-btns-container">
@@ -75,10 +76,27 @@
 
 <script>
     const cultureFilter = document.querySelector('#culture-filter');
+    const musicFilter = document.querySelector('#music-filter');
+    const foodFilter = document.querySelector('#food-filter');
     musicFilter.addEventListener('change', (e) =>{
         e.preventDefault();
-        if (cultureFilter.checked)
-        else console.log('off');
+        activateFilters();
 
-    })
+    });
+
+    function activateFilters() {
+        const events = document.querySelectorAll('.event-result');
+        const eventsArray = [...events];
+        const music = musicFilter.checked;
+        const culture = cultureFilter.checked;
+        const food = foodFilter.checked;
+
+        events.forEach((event) => {
+            console.log(event.childNodes[1].childNodes[5].innerHTML);
+        })
+        //[""0""].childNodes[1].childNodes[5].innerHTML
+        console.log(music,culture,food);
+        console.log(eventsArray);
+
+    }
 </script>
