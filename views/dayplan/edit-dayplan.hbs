@@ -1,13 +1,14 @@
 <article>
 
     <h2>{{selectedDate}}</h2>
+    <div class="dayplan-fields-container">
     <form action="/dayplan/save?_id={{dayPlanId}}" method="POST">
-        <label for="name">Name</label>
-            <input type="text" name='name' value='{{name}}' required>
-        <button>SAVE</button>
+        <label for="name">Dayplan name</label>
+        <input type="text" name='name' value='{{name}}' required>
+        <button class="dayplan-name-save-btn">SAVE</button>
     </form>
-        <label for="location">Location</label>
-        <select name= "location" required> 
+        <label class="location" for="location">Location</label>
+        <select class="districts" name= "location" required> 
         <option value = "Barceloneta">Barceloneta</option>
         <option value = "Forum">Forum</option>
         <option value = "Gracia">Gracia</option>
@@ -32,6 +33,8 @@
         <label for="food">Food</label>
         <input type= "checkbox" name= "food" id='food-filter'>
     </section>
+    </div>
+    <div class="event-results-container">
     <section class='ordered-results'>
         {{#if eventsByDate}}
             {{#each eventsByDate}}
@@ -72,6 +75,8 @@
             </div>
         {{/if}}
     </section>
+    </div>
+
 </article>
 
 <script>
