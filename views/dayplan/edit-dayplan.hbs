@@ -39,7 +39,7 @@
         {{#if eventsByDate}}
             {{#each eventsByDate}}
         <div class="event-result">
-           <div class="event-text-container">
+           <div class="add-event-text-container">
             <h4>{{this.eventName}}</h4>
             <p>{{this.meetupLink}}</p>
             <p>{{this.category}}</p>
@@ -71,7 +71,7 @@
             {{/each}}
         {{else}}
             <div id='no-events-message'>
-                <p>Tourist Go Home!!!</p>
+                <p>No events found for today!!!</p>
             </div>
         {{/if}}
     </section>
