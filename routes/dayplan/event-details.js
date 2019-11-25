@@ -6,8 +6,8 @@ router.get('/', (req, res, next) => {
     const {_id} = req.query;
     if (_id) {
         Event.find({_id})
-            .then( (selectedEvent) =>{
-                console.log(selectedEvent);
+            .then( (arraySelectedEvent) =>{
+                const selectedEvent = arraySelectedEvent[0];
                 
                 res.render('event-details', {selectedEvent});
             } )

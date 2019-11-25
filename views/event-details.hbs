@@ -1,2 +1,19 @@
 <h1>Selected Event</h1>
-{{selectedEvent}}
+<article>
+    <div class='button-container'>
+        <button>DEL</button>
+        <button>ADD</button>
+    </div>
+    <section>
+        <h2>{{selectedEvent.eventName}}</h2>        
+        <p>{{selectedEvent.meetupLink}}</p>        
+        <p>{{selectedEvent.fullAddress}}</p>        
+        <p>{{selectedEvent.startTime}}</p>        
+        <p>{{selectedEvent.endTime}}</p>        
+        <p>{{selectedEvent.location}}</p>        
+        <p>{{selectedEvent.category}}</p>        
+    </section>
+    <div class='button-container'>
+        <input type=button onClick="location.href='../'" value='Back'>
+    </div>
+</article>
