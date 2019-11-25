@@ -21,8 +21,7 @@ router.get('/', (req, res, next) => {
             .then ((userData) => {
                
                 const userAgenda = userData[0].agenda;
-                
-                
+                                
                     DayPlan.find({_id: {$in: userAgenda}})
                     .populate('events')
                     .then ( (dayPlanFound) => {

@@ -5,11 +5,13 @@
 <div class = "dayplan-card">
 
 <button id= "edit-dayplanId-{{this._id}}">edit Day Plan</button>
-<h2>{{@index}}</h2>
+
 <h2>{{this.name}}</h2>
-<h4>{{this.date}}</h4>
+<h4 class='splice-date'>{{this.date}}</h4>
+
 {{#each this.events}}
-<p>{{this.eventName}}</p> 
+<p><b>{{this.eventName}}</b></p> 
+<p>{{startTime}}</p>
 {{/each}}
 
 </div>
@@ -19,3 +21,12 @@
     <button>Add Dayplan</button>
 </form>
 
+<script>
+    let dates = document.querySelectorAll('.splice-date');
+    const formattedDates = [...dates].map((date) =>{
+        return date.innerHTML.split('').splice(0, 15).join('');
+    })
+    for (let i = 0; i<dates.length;i++) {
+        dates[i].innerHTML = formattedDates[i];
+    }
+</script>

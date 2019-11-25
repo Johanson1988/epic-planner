@@ -13,6 +13,7 @@ router.post('/', (req,res,next) => {
     
     const {'day-plan-date': selectedDate} = req.body;
     
+
     const newDayPlan = new DayPlan({
         name:'null',
         date:selectedDate,
