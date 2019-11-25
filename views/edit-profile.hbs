@@ -1,13 +1,39 @@
 <h1>Profile</h1>
 
 <div class ="profile-info">
-    <div class ="avatar-name">
+    <div class ="avatar">
         <img src= "./../public/images/full-logo.png">
-        <h2>{{currentUserData.fullName}}</h2>
-    </div>
+       </div>
     <div class="profile-details">
-        <p>{{currentUserData.email}}</p>
-        <p>{{currentUserData.keywords}}</p>
-    </div>
-    
+        <form action = "/edit-profile" method ="POST">
+        
+        <label for="fullName">Full name</label>
+        <input type="text" name='fullName' value='{{currentUserData.fullName}}' required>
+
+        <label for="email">email</label>
+        <input type="text" name='email' value='{{currentUserData.email}}' required>
+            
+            <section id='user-keywords'>
+        <p>Select your areas of interest</p>
+        <label for="music">Music</label>
+        <input type= "checkbox" name= "music">
+
+        <label for="culture">Culture</label>
+        <input type= "checkbox" name= "culture">
+
+        <label for="food">Food</label>
+        <input type= "checkbox" name= "food">
+        </section>
+
+      <div class ="profile-btns">
+      <input type=button onClick="location.href='../'" value='Back'>
+      <button type='submit' id='save-profile-update' class="update-profile-info">Save</button>
+        
+        </div>
+
+        </form> 
+        </div>
 </div>
+
+<form action="/dayplan/save?_id={{dayPlanId}}" method="POST">
+        
