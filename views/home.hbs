@@ -1,8 +1,8 @@
 <h1>Day-plan</h1>
-
+<button id='slider-left'> < </button>
 {{#each dayPlanFound}}
 
-<div class = "dayplan-card">
+<div class = "dayplan-card no-display">
 
 <button id= "edit-dayplanId-{{this._id}}">edit Day Plan</button>
 
@@ -16,12 +16,14 @@
 
 </div>
 {{/each}}
+<button id='slider-right'>></button>
 <hr>
 <form action="/dayplan/select-date" method="GET">
     <button>Add Dayplan</button>
 </form>
 
 <script>
+    //Format dates
     let dates = document.querySelectorAll('.splice-date');
     const formattedDates = [...dates].map((date) =>{
         return date.innerHTML.split('').splice(0, 15).join('');
@@ -29,4 +31,35 @@
     for (let i = 0; i<dates.length;i++) {
         dates[i].innerHTML = formattedDates[i];
     }
+
+
+    //Slider
+    const cardsList = document.querySelectorAll('.dayplan-card');
+    const cardsArray = [...cardsList];
+    cardsArray[0].setAttribute('class','dayplan-card dayplan-card-active');
+
+    const sliderLeft = document.querySelector('#slider-left');
+    const sliderRight = document.querySelector('#slider-right');
+
+    let nextCard;
+
+    sliderLeft.addEventListener('click',(e) =>{
+        e.preventDefault();
+        const activeCard = document.querySelector('.dayplan-card-active');
+        if (cardsArray.indexOf(activeCard) > 0) nextCard = cardsArray.indexOf(activeCard) -1;
+        else nextCard = cardsArray.length - 1;
+        console.log(nextCard);
+        activeCard.setAttribute('class','dayplan-card no-display');
+        cardsArray[nextCard].setAttribute('class','dayplan-card dayplan-card-active');
+    });
+
+    sliderRight.addEventListener('click',(e) =>{
+        e.preventDefault();
+        const activeCard = document.querySelector('.dayplan-card-active');
+        if (cardsArray.indexOf(activeCard) < cardsArray.length-1) nextCard = cardsArray.indexOf(activeCard) +1;
+        else nextCard = 0;
+        console.log(nextCard);
+        activeCard.setAttribute('class','dayplan-card no-display');
+        cardsArray[nextCard].setAttribute('class','dayplan-card dayplan-card-active');
+    });
 </script>
