@@ -4,6 +4,8 @@
     <form action="/dayplan/save?_id={{dayPlanId}}" method="POST">
         <label for="name">Name</label>
             <input type="text" name='name' value='{{name}}' required>
+        <button>SAVE</button>
+    </form>
         <label for="location">Location</label>
         <select name= "location" required> 
         <option value = "Barceloneta">Barceloneta</option>
@@ -22,13 +24,13 @@
     <section id='user-keywords'>
         <p>Select your areas of interest</p>
         <label for="music">Music</label>
-        <input type= "checkbox" name= "music">
+        <input type= "checkbox" name= "music" id='music-filter'>
 
         <label for="culture">Culture</label>
-        <input type= "checkbox" name= "culture">
+        <input type= "checkbox" name= "culture" id='culture-filter'>
 
         <label for="food">Food</label>
-        <input type= "checkbox" name= "food">
+        <input type= "checkbox" name= "food" id='food-filter'>
     </section>
     <section class='ordered-results'>
         {{#if eventsByDate}}
@@ -37,6 +39,7 @@
            <div class="event-text-container">
             <h4>{{this.eventName}}</h4>
             <p>{{this.meetupLink}}</p>
+            <p>{{this.category}}</p>
            </div> 
 
            <div class="event-btns-container">
@@ -69,7 +72,59 @@
             </div>
         {{/if}}
     </section>
-        
-        <button>SAVE</button>
-    </form>
 </article>
+
+<script>
+    const cultureFilter = document.querySelector('#culture-filter');
+    const musicFilter = document.querySelector('#music-filter');
+    const foodFilter = document.querySelector('#food-filter');
+    musicFilter.addEventListener('change', (e) =>{
+        e.preventDefault();
+        activateFilters();
+
+    });
+    foodFilter.addEventListener('change', (e) =>{
+        e.preventDefault();
+        activateFilters();
+
+    });
+    cultureFilter.addEventListener('change', (e) =>{
+        e.preventDefault();
+        activateFilters();
+
+    });
+
+    function activateFilters() {
+        const events = document.querySelectorAll('.event-result');
+        const eventsArray = [...events];
+        const music = musicFilter.checked;
+        const culture = cultureFilter.checked;
+        const food = foodFilter.checked;
+        
+
+        // use the classList API to remove and add classes
+            //div.classList.remove("foo");
+            //div.classList.add("anotherclass");
+
+      //  events.forEach((event) => {
+      //      console.log(event.childNodes[1].childNodes[5].innerHTML);
+       // })
+        for (let i=0;i<eventsArray.length;i++) {
+            eventsArray[i].classList.add("no-display");
+            if (music && eventsArray[i].childNodes[1].childNodes[5].innerHTML.includes('music')) {
+                eventsArray[i].classList.remove("no-display");
+            }
+            if (culture && eventsArray[i].childNodes[1].childNodes[5].innerHTML.includes('culture')) {
+                eventsArray[i].classList.remove("no-display");
+            }
+            if (food && eventsArray[i].childNodes[1].childNodes[5].innerHTML.includes('food')) {
+                eventsArray[i].classList.remove("no-display");
+            }
+
+            
+        }
+
+        //[""0""].childNodes[1].childNodes[5].innerHTML
+
+    }
+</script>
