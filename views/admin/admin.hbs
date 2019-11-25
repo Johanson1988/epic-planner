@@ -6,7 +6,7 @@
     <article>
         <form action="/admin/update/event" method="POST">
             <label for="_id">_ID</label>
-            <input type="text" value='{{this._id}}'>
+            <input type="text" name="_id" value='{{this._id}}'>
             <br>
             <label for="eventName">EventName</label>
             <input type="text"  name='eventName' value='{{this.eventName}}'>
@@ -45,7 +45,7 @@
             <input type="text" value='{{this.updated_at}}'>
             <br>
 
-            <button>Update</button>
+            <button type='submit'>Update</button>
         </form>
     </article>
     {{/each}}
