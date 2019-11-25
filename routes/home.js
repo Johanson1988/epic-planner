@@ -6,6 +6,7 @@ const dbName = 'epic-planner-db';
 const dbUrl = 'mongodb://localhost:27017/';
 
 const User = require('./../models/User');
+const DayPlan = require('./../models/Dayplan');
 
 
 router.get('/', (req, res, next) => {
@@ -17,9 +18,20 @@ router.get('/', (req, res, next) => {
 
         User.find({_id: userId})
             .then ((userData) => {
-                mongoose.connection.close();
-                console.log(userData[0].agenda, 'ahora?');
+               
+                const userAgenda = userData[0].agenda;
+                const userDayPlans = [];
+                
+                    DayPlan.find({_id: {$in: userAgenda}}) 
+                    .then ( (dayPlanFound) => {
+                        console.log(dayPlanFound);
+                        //userDayPlans.push(dayPlanFound)
+
+                    })
+               
+                // mongoose.connection.close();
             })
+            .catch( (err) => console.log(err));
     })
     
      
