@@ -10,7 +10,7 @@
         {{#each dayPlanFound}} 
         <div class="dayplan-card no-display">
 
-        <button class="edit-dayplan-btn" id="edit-dayplanId-{{this._id}}">edit Day Plan</button>
+        <button class="edit-dayplan-btn" id="edit-dayplanId-{{this._id}}"> ✎ </button>
        
         <h2>{{this.name}}</h2>
         <h4 class='splice-date'>{{this.date}}</h4>
@@ -35,7 +35,7 @@
     <hr>
     <div class="add-dayplan-container">
     <form action="/dayplan/select-date" method="GET">
-        <button>Add Dayplan</button>
+        <button>+ DAY PLAN</button>
     </form>
 </div>
     <script>

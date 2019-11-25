@@ -1,8 +1,12 @@
-<article>
+
+
+<article class ="select-date-container">
+    
     <form action="/dayplan/edit-dayplan"  method= "POST">
         <input type="date" name='day-plan-date'>
         <button type="submit">Select Date</button>
     </form>
+
     {{#if errorMessage}}
     <p>{{errorMessage}}</p>
     <!--TODO Insert here -->

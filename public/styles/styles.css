@@ -175,26 +175,31 @@ h2 {
 }
 
 .dayplan-card {
-    padding: 16px;
-    border: solid 2px #3972f5;
-    max-width: 320px;
+   
+    /* border: solid 2px #3972f5; */
+    max-width: 360px ;
+}
+
+.splice-date {
+    color: #3972f5;
 }
 
 .edit-dayplan-btn{
-    padding: 4px 20px;
+    padding: 2px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
     background-color: #ec2c32;
 
     font-family: "Open Sans", sans-serif;
     font-weight: lighter;
-    font-size: 16px;
+    font-size: 24px;
     color: white;
 
     border-radius: 40px;
     border: solid 2px #ec2c32;
 }
-
-
 
 /* slider arrow stylings */
 .slider-buttons {
@@ -202,13 +207,13 @@ h2 {
     
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
 
 #slider-left, #slider-right {
-    margin-right: 20px;
+    margin: -10px 10px 0px 10px;
     background-color:#ec2c32;
     color: #fff;
     padding: 10px 15px;
@@ -234,7 +239,7 @@ h2 {
 /* day-plan cards */
 
 .dayplan-container {
-    margin-top: 10px;
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -252,9 +257,24 @@ h2 {
     flex-direction: column;
     justify-items: center;
     align-items: center;
+
+    border-top: solid 1px #3972f5;
 }
 
+.add-dayplan-container button {
+    margin-top:6px;
+    padding: 4px 20px;
 
+    background-color: #3972f5;
+
+    font-family: "Open Sans", sans-serif;
+    font-weight: lighter;
+    font-size: 16px;
+    color: white;
+
+    border: none;
+    border-radius: 40px;
+}
 
 .startTime {
     font-family: "Open Sans", sans-serif;
@@ -263,8 +283,30 @@ h2 {
 
 }
 
-
-
 .no-display {
     display: none;
+}
+
+/* ------ SELECT DATE ----- */
+
+.select-date-container form {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+.select-date-container button {
+    margin-top: 10px;
+    padding: 4px 20px;
+
+    background-color: #3972f5;
+
+    font-family: "Open Sans", sans-serif;
+    font-weight: lighter;
+    font-size: 16px;
+    color: white;
+
+    border-radius: 40px;
 }
