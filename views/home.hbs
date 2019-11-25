@@ -1,8 +1,21 @@
 <h1>Day-plan</h1>
+
+{{#each dayPlanFound}}
+
+<div class = "dayplan-card">
+
+<button id= "edit-dayplanId-{{this._id}}">edit Day Plan</button>
+<h2>{{@index}}</h2>
+<h2>{{this.name}}</h2>
+<h4>{{this.date}}</h4>
+{{#each this.events}}
+<p>{{this.eventName}}</p> 
+{{/each}}
+
+</div>
+{{/each}}
+<hr>
 <form action="/dayplan/select-date" method="GET">
     <button>Add Dayplan</button>
 </form>
 
-<form action="/google-api" method="GET">
-    <button>FETCH DATA</button>
-</form>

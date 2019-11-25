@@ -7,6 +7,7 @@ const dbUrl = 'mongodb://localhost:27017/';
 
 const User = require('./../models/User');
 const DayPlan = require('./../models/Dayplan');
+const Event = require('./../models/Event');
 
 
 router.get('/', (req, res, next) => {
@@ -20,25 +21,22 @@ router.get('/', (req, res, next) => {
             .then ((userData) => {
                
                 const userAgenda = userData[0].agenda;
-                const userDayPlans = [];
                 
-                    DayPlan.find({_id: {$in: userAgenda}}) 
+                
+                    DayPlan.find({_id: {$in: userAgenda}})
+                    .populate('events')
                     .then ( (dayPlanFound) => {
-                        console.log(dayPlanFound);
-                        //userDayPlans.push(dayPlanFound)
-
-                    })
+                        res.render('./home', {dayPlanFound}) 
                
                 // mongoose.connection.close();
             })
             .catch( (err) => console.log(err));
     })
     
-     
-    res.render('./home') 
+    
 })
 
-
+})
 
 
 

@@ -7,7 +7,9 @@ const dayPlanSchema = new Schema({
     name:    { type: String, required: true},
     startingTime: { type: String},
     endingTime: { type: String},
-    events:{ type : [] }
+    //events:{ type : [] }
+    events:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Event'}]
+
     
 },{
     timestamps: {
