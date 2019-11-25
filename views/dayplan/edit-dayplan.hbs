@@ -4,6 +4,8 @@
     <form action="/dayplan/save?_id={{dayPlanId}}" method="POST">
         <label for="name">Name</label>
             <input type="text" name='name' value='{{name}}' required>
+        <button>SAVE</button>
+    </form>
         <label for="location">Location</label>
         <select name= "location" required> 
         <option value = "Barceloneta">Barceloneta</option>
@@ -22,7 +24,7 @@
     <section id='user-keywords'>
         <p>Select your areas of interest</p>
         <label for="music">Music</label>
-        <input type= "checkbox" name= "music">
+        <input type= "checkbox" name= "music" id='music-filter'>
 
         <label for="culture">Culture</label>
         <input type= "checkbox" name= "culture">
@@ -69,7 +71,14 @@
             </div>
         {{/if}}
     </section>
-        
-        <button>SAVE</button>
-    </form>
 </article>
+
+<script>
+    const cultureFilter = document.querySelector('#culture-filter');
+    musicFilter.addEventListener('change', (e) =>{
+        e.preventDefault();
+        if (cultureFilter.checked)
+        else console.log('off');
+
+    })
+</script>
