@@ -12,6 +12,11 @@
 {{#each this.events}}
 <p><b>{{this.eventName}}</b></p> 
 <p>{{startTime}}</p>
+<form action='/dayplan/event-details' method="GET">            
+    <input type="hidden" name="_id" value="{{this.id}}" /> 
+    <input type="hidden" name="sender" value="home" />
+    <button id='event-info-{{this._id}}' class="event-info" type='submit'>info</button>
+</form>
 {{/each}}
 
 </div>

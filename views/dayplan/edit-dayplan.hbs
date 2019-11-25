@@ -48,19 +48,14 @@
                <button id='add-event-{{this._id}}' class="add-event">+</button>
                <script>
                    var addEventBtn = document.querySelector(`#add-event-{{this._id}}`);
-                   addEventBtn.addEventListener('click', async (e) => {
+                   addEventBtn.addEventListener('click', (e) => {
                         e.preventDefault();
-                        try {
-                            // /dayplan/save?_id={{dayPlanId}}
-                            const response = await fetch(`/dayplan/save-event?eventId={{this._id}}&dayPlanId={{../dayPlanId}}`, {
-                            method: 'post'
-                            });
-                            console.log('Saved!', response);
-                        }
-                        catch(err) {
-                            console.error(`Error: ${err}`);
-                        }
-                      
+                         axios.post(`/dayplan/save-event?eventId={{this._id}}&dayPlanId={{../dayPlanId}}`)
+                            .then(response => {
+                                console.log(`{{this.id}}`)
+                            })
+                            .catch((err) => {
+                                console.log('Error: ',err);                            }); 
                    });
                </script>
                 <form action='/dayplan/event-details' method="GET"
@@ -68,20 +63,7 @@
                 <input type="hidden" name="_id" value="{{this.id}}" /> 
                 <button id='event-info-{{this._id}}' class="event-info" type='submit'>info</button>
                 </form>
-              
-              
-              {{!-- <script>
-                   var eventInfoBtn = document.querySelector(`#event-info-{{this._id}}`);
-                   eventInfoBtn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                         axios.get('/dayplan/event-details?_id={{this._id}}')
-                            .then(response => {
-                                console.log(`{{this.id}}`)
-                            })
-                            .catch((err) => {
-                                console.log('Error: ',err);                            }); 
-                   });
-               </script> --}}
+                             
            </div>
             </div>
             {{/each}}
