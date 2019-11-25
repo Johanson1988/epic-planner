@@ -12,7 +12,7 @@
     <label for="password">Password</label>
     <input type= "password" name= "password" required>
 
-    <button type="submit">Log in</button>
+    <button id="login-button" type="submit">Log in</button>
 
 </form>
 {{#if errorMessage}}
@@ -64,8 +64,8 @@
     <label for="password">Password</label>
     <input type= "password" id= "user-password" name= "password" required>
 
-    <label for="location">Location</label>
-    <select name= "location" required> 
+    <label class="location" for="location">Location</label>
+    <select class="districts" name= "location" required> 
         <option value = "Barceloneta">Barceloneta</option>
         <option value = "Forum">Forum</option>
         <option value = "Gracia">Gracia</option>
@@ -89,9 +89,9 @@
 
         <label for="food">Food</label>
         <input type= "checkbox" name= "food">
-    </section>
-    
-    <button type="submit">Submit</button>
+    </section> 
+
+    <button class="submit" type="submit">Submit</button>
 
 </form>
 
