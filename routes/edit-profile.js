@@ -26,7 +26,7 @@ router.post('/', (req, res, next) => {
             
             User.updateOne({_id:userId}, {$set:{'fullName':fullName, 'email': email, 'keywords': keywords}})
                 .then (() => { 
-                    
+                    res.redirect('/');
                 });    
     });    
 

@@ -1,39 +1,36 @@
 <h1>Profile</h1>
 
-<div class ="profile-info">
-    <div class ="avatar">
-        <img src= "./../public/images/full-logo.png">
-       </div>
+<div class="profile-info">
+    <div class="avatar">
+        <img src="./../public/images/full-logo.png">
+    </div>
     <div class="profile-details">
-        <form action = "/edit-profile" method ="POST">
-        
-        <label for="fullName">Full name</label>
-        <input type="text" name='fullName' value='{{currentUserData.fullName}}' required>
+        <form action="/edit-profile" method="POST">
 
-        <label for="email">email</label>
-        <input type="text" name='email' value='{{currentUserData.email}}' required>
-            
+            <label for="fullName">Full name</label>
+            <input type="text" name='fullName' value='{{currentUserData.fullName}}' required>
+
+            <label for="email">email</label>
+            <input type="text" name='email' value='{{currentUserData.email}}' required>
+
             <section id='user-keywords'>
-        <p>Select your areas of interest</p>
-        <label for="music">Music</label>
-        <input type= "checkbox" name= "music">
+                <p>Select your areas of interest</p>
+                <label for="music">Music</label>
+                <input type="checkbox" name="music">
 
-        <label for="culture">Culture</label>
-        <input type= "checkbox" name= "culture">
+                <label for="culture">Culture</label>
+                <input type="checkbox" name="culture">
 
-        <label for="food">Food</label>
-        <input type= "checkbox" name= "food">
-        </section>
+                <label for="food">Food</label>
+                <input type="checkbox" name="food">
+            </section>
 
-      <div class ="profile-btns">
-      <input type=button onClick="location.href='../'" value='Back'>
-      <button type='submit' id='save-profile-update' class="update-profile-info">Save</button>
-        
-        </div>
+            <div class="profile-btns">
+                <input type=button onClick="location.href='../'" value='Back'>
+                <button type='submit' id='save-profile-update' class="update-profile-info">Save</button>
 
-        </form> 
-        </div>
+            </div>
+
+        </form>
+    </div>
 </div>
-
-<form action="/dayplan/save?_id={{dayPlanId}}" method="POST">
-        
