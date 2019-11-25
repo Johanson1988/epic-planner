@@ -1,3 +1,4 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <article>
     <input type=button onClick="location.href='../'" value='Back'>
 
@@ -5,7 +6,7 @@
     <form action="/dayplan/save?_id={{dayPlanId}}" method="POST">
         <label for="name">Name</label>
             <input type="text" name='name' value='{{name}}' required>
-        <button>SAVE</button>
+        <button type='submit'>SAVE</button>
     </form>
         <label for="location">Location</label>
         <select name= "location" required> 
@@ -62,8 +63,25 @@
                       
                    });
                </script>
-
-               <button id=`event-info-{{this._id}}` class="event-info">info</button>
+                <form action='/dayplan/event-details' method="GET"
+                >
+                <input type="hidden" name="_id" value="{{this.id}}" /> 
+                <button id='event-info-{{this._id}}' class="event-info" type='submit'>info</button>
+                </form>
+              
+              
+              {{!-- <script>
+                   var eventInfoBtn = document.querySelector(`#event-info-{{this._id}}`);
+                   eventInfoBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                         axios.get('/dayplan/event-details?_id={{this._id}}')
+                            .then(response => {
+                                console.log(`{{this.id}}`)
+                            })
+                            .catch((err) => {
+                                console.log('Error: ',err);                            }); 
+                   });
+               </script> --}}
            </div>
             </div>
             {{/each}}

@@ -4,6 +4,7 @@ const Event = require('./../../models/Event');
 
 router.get('/', (req, res, next) => {
     const {_id} = req.query;
+    console.log({_id});
     if (_id) {
         Event.find({_id})
             .then( (arraySelectedEvent) =>{
