@@ -6,6 +6,7 @@ const authRouter = require('./auth');
 const signinRouter = require('./signin');
 const dayplanRouter = require('./dayplan/index-dayplan');
 const googleApiRouter = require('./google-api/api-call');
+const homeRouter = require('./home');
 
 
 
@@ -25,8 +26,6 @@ router.use('/dayplan', dayplanRouter);
 router.use('/google-api', googleApiRouter);
 
 //Home
-router.get('/', (req, res, next) => {
-    res.render('./home') 
-});
+router.use('/', homeRouter);
 
 module.exports = router;

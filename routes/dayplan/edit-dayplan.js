@@ -10,6 +10,7 @@ const DayPlan = require('./../../models/Dayplan');
 const User = require('../../models/User');
 
 router.post('/', (req,res,next) => {
+    
     const {'day-plan-date': selectedDate} = req.body;
     
     const newDayPlan = new DayPlan({
