@@ -51,7 +51,7 @@
                <button id='add-event-{{this._id}}' class="add-event">+</button>
                <script>
                    var addEventBtn = document.querySelector(`#add-event-{{this._id}}`);
-                   addEventBtn.addEventListener('click',  async(e) => {
+                   addEventBtn.addEventListener('click',  (e) => {
                         e.preventDefault();                                
                         if (e.currentTarget.innerHTML === '+') {                            
                             e.currentTarget.classList.remove("add-event");
@@ -69,6 +69,13 @@
                             e.currentTarget.classList.remove("delete-event");
                             e.currentTarget.classList.add("add-event");
                             e.currentTarget.innerHTML = '+';
+                            axios.post(`/dayplan/event-details/delete`, 
+                            {eventId : `{{this._id}}`, dayplanId : `{{../dayPlanId}}`  })
+                            .then(response => {
+                                console.log(`{{this.id}}`)
+                            })
+                            .catch((err) => {
+                                console.log('Error: ',err);                            });
                         }
                         
                       

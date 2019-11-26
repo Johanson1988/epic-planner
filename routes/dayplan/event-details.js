@@ -4,6 +4,7 @@ const Event = require('./../../models/Event');
 const Dayplan = require('./../../models/Dayplan');
 
 router.post('/delete', (req,res, next) => {
+    console.log(req.query);
     const {eventId,dayplanId} = req.body;
     console.log('event',eventId,'day',dayplanId);
     Dayplan.updateOne({'_id':dayplanId}, {$pull:{'events':eventId}})
