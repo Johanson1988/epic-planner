@@ -6,9 +6,12 @@ const authRouter = require('./auth');
 const signinRouter = require('./signin');
 const editProfileRouter =require('./edit-profile')
 const dayplanRouter = require('./dayplan/index-dayplan');
-const googleApiRouter = require('./google-api/api-call');
-const homeRouter = require('./home');
 
+const googleApiRouter = require('./google-api/api-call');
+//const googleMapApiRouter = require('./google-api/map-api-call');
+
+const homeRouter = require('./home');
+const epicMapRouter = require ('./map');
 
 
 //Authorization
@@ -26,7 +29,13 @@ router.use('/edit-profile', editProfileRouter);
 //Dayplan
 router.use('/dayplan', dayplanRouter);
 
-//API Call
+//Map
+router.use('/map', epicMapRouter);
+
+// //API Call - places
+// router.use('/google-api', googleApiMapRouter);
+
+//API Call - calendar
 router.use('/google-api', googleApiRouter);
 
 //Home
