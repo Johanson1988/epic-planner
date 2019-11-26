@@ -2,11 +2,11 @@
 <article>
     <input type=button onClick="location.href='../'" value='Back'>
 
-    <h2>{{selectedDate}}</h2>
+    <h2>{{newDayPlan.date}}</h2>
     <div class="dayplan-fields-container">
     <form action="/dayplan/save?_id={{dayPlanId}}" method="POST">
         <label for="name">Dayplan name</label>
-        <input type="text" name='name' value='{{name}}' required>
+        <input type="text" name='name' value='{{newDayPlan.name}}' required>
         <button class="dayplan-name-save-btn">SAVE</button>
     </form>
         <label class="location" for="location">Location</label>
@@ -114,13 +114,8 @@
         const food = foodFilter.checked;
         
 
-        // use the classList API to remove and add classes
-            //div.classList.remove("foo");
-            //div.classList.add("anotherclass");
-
-      //  events.forEach((event) => {
-      //      console.log(event.childNodes[1].childNodes[5].innerHTML);
-       // })
+        
+       
         for (let i=0;i<eventsArray.length;i++) {
             eventsArray[i].classList.add("no-display");
             if (music && eventsArray[i].childNodes[1].childNodes[5].innerHTML.includes('music')) {

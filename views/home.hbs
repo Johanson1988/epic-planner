@@ -1,8 +1,9 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <h1>Day-plan</h1>
 <div class="home-main-container">
 
-    <form action="/edit-profile" method="GET">
-        <button class="edit-profile-btn">Edit profile</button>
+    <form action="/edit-profile/?_id={{dayPlanId}}" method="GET">
+    <button class="edit-profile-btn">Edit profile</button>
     </form>
     
     <div class="dayplan-container">
@@ -10,8 +11,18 @@
         {{#each dayPlanFound}} 
         <div class="dayplan-card no-display">
 
-        <button class="edit-dayplan-btn" id="edit-dayplanId-{{this._id}}"> ✎ </button>
+        <button class="edit-dayplan-btn" id="edit-dayplanId-{{this._id}}" type="submit"> ✎ </button>
+        <script>
+            var editDayPlanButton = document.querySelector('#edit-dayplanId-{{this._id}}');
+
+            editDayPlanButton.addEventListener('click', (e) => {
+                axios.post('/dayplan/edit-dayplan', {dayPlanId: `{{this._id}}` })
+                    .then(()=>console.log('sent'))
+                    .catch((err) => console.error(err));     
+            });
+        </script>
        
+
         <h2>{{this.name}}</h2>
         <h4 class='splice-date'>{{this.date}}</h4>
              
