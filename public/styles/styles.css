@@ -370,32 +370,34 @@ h2 {
     flex-direction: column;
     justify-content: center;
     align-content: center;
-
 }
 
- .ordered-results {
+.ordered-results {
     padding: 0px 10px;
     display: flex;
     flex-direction: column;
     justify-: center;
     align-content: center;
-} 
-
+}
 
 /* ------EDIT PROFILE----- */
+
+.avatar img {
+    width: 200px;
+}
 
 .profile-info {
     display: flex;
     flex-direction: column;
     justify-items: center;
-    align-items: center
+    align-items: center;
 }
 
 .profile-info form {
     display: flex;
     flex-direction: column;
     justify-items: center;
-    align-items: center
+    align-items: center;
 }
 
 .profile-details {
@@ -403,13 +405,14 @@ h2 {
     text-align: center;
 }
 
-.profile-info button, input {
+.profile-info button,
+input {
     margin: 0 10px 0px 10px;
     background-color: #ec2c32;
     color: #fff;
     padding: 10px 15px;
 
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-size: 12px;
     font-weight: bold;
 
