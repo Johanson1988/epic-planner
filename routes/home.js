@@ -1,14 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 
-const dbName = 'epic-planner-db';
-const dbUrl = 'mongodb://localhost:27017/';
 
 const User = require('./../models/User');
 const DayPlan = require('./../models/Dayplan');
-const Event = require('./../models/Event');
 
+const userId = req.session.currentUser._id;
 
 router.get('/', (req, res, next) => {
         User.find({_id: userId})
