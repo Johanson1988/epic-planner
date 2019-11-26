@@ -12,9 +12,7 @@ router.post('/delete', (req,res, next) => {
             console.log('Event removed from the day plan');
             res.redirect('/');
         })
-        .catch( (err) => console.error(err));
-    //Favorite.update( {cn: req.params.name}, { $pullAll: {uid: [req.params.deleteUid] } } )
-    
+        .catch( (err) => console.error(err));    
 })
 
 router.get('/', (req, res, next) => {

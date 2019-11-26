@@ -83,10 +83,9 @@ function listEvents(auth) {
     orderBy: 'startTime',
   }, (err, res) => {
     if (err) return console.log('The API returned an error: ' + err);
-    const events = res.data.items;
     populateDb(res.data.items);
-    
-
+    res.send('POST recieved', 200);
+    res.end();
   });
 }
 })
@@ -110,5 +109,5 @@ function populateDb(data) {
     
     //TODO function to check whether the event exist before saving it
     event.save();
-  })          
+  })
 }

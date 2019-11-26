@@ -10,7 +10,9 @@ router.post('/', (req, res, next) => {
 
     DayPlan.updateOne({_id:dayPlanId}, {$push: {events: eventId}})
                     .then(() => {
-                        console.log('Event added to day plan');                      
+                        console.log('Event added to day plan');  
+                        res.send('POST recieved', 200);
+                        res.end();                    
                     })
                     .catch((err) => console.error(err));
 }
