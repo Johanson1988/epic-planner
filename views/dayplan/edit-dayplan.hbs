@@ -51,14 +51,19 @@
                <button id='add-event-{{this._id}}' class="add-event">+</button>
                <script>
                    var addEventBtn = document.querySelector(`#add-event-{{this._id}}`);
-                   addEventBtn.addEventListener('click', (e) => {
+                   addEventBtn.addEventListener('click', async (e) => {
                         e.preventDefault();
-                         axios.post(`/dayplan/save-event?eventId={{this._id}}&dayPlanId={{dayPlanId}}`)
-                            .then(response => {
-                                console.log(`{{this.id}}`)
-                            })
-                            .catch((err) => {
-                                console.log('Error: ',err);                            }); 
+                        try {
+                            // /dayplan/save?_id={{dayPlanId}}
+                            const response = await fetch(`/dayplan/save-event?eventId={{this._id}}&dayPlanId={{../dayPlanId}}`, {
+                            method: 'post'
+                            });
+                            console.log('Saved!', response);
+                        }
+                        catch(err) {
+                            console.error(`Error: ${err}`);
+                        }
+                      
                    });
                </script>
                 <form action='/dayplan/event-details' method="GET"
