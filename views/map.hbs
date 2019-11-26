@@ -17,9 +17,15 @@
             directionsRenderer.setMap(map);
 
             var request = {
-                origin: 'Carrer Pamplona, Barcelona',
+                origin: 'Big Bang bar',
                 destination: 'Carrer de Castillejos, Barcelona',
-                travelMode: 'DRIVING'
+                waypoints: [ 
+                {
+                    location: 'Razzmatazz',
+                    stopover: true
+                }],
+
+                travelMode: 'WALKING'
             };
 
             directionsService.route(request, function (result, status) {
