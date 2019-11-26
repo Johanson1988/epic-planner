@@ -10,17 +10,11 @@
 
         {{#each dayPlanFound}} 
         <div class="dayplan-card no-display">
-
-        <button class="edit-dayplan-btn" id="edit-dayplanId-{{this._id}}"> ✎ </button>
-        <script>
-            var editDayPlanButton = document.querySelector('#edit-dayplanId-{{this._id}}');
-
-            editDayPlanButton.addEventListener('click', (e) => {
-                axios.get(`/dayplan/modify-dayplan?dayPlanId={{this._id}}`)
-                    .then(()=>console.log('sent'))
-                    .catch((err) => console.error(err));     
-            });
-        </script>
+        <form action='/dayplan/modify-dayplan' method="GET">
+            <input type="hidden" name="dayPlanId" value="{{this._id}}">
+            <button class="edit-dayplan-btn" id="edit-dayplanId-{{this._id}}" type="submit"> ✎ </button>
+        </form>
+        
         <h2>{{this.name}}</h2>
         <h4 class='splice-date'>{{this.date}}</h4>
              

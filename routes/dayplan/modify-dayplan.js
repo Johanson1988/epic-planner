@@ -5,6 +5,7 @@ const Event = require('./../../models/Event');
 
 
 router.get('/', (req,res,next) => {
+    console.log(req.query,req.body,req.params);
     const {dayPlanId} = req.query;
 
     DayPlan.findOne({_id:dayPlanId})
