@@ -30,9 +30,7 @@ router.post('/', (req,res,next) => {
             const dayPlanId = newDayPlan._id;
             let eventsByDate;
 //TODO factorizar aqui *************************************************************************
-            mongoose
-            .connect(dbUrl + dbName, {useNewUrlParser: true, useUnifiedTopology:true})
-                .then( mongoEntry => {
+
                 Event.find({date:selectedDate})
                 .then (filteredEvents => {                 
                     eventsByDate = filteredEvents.sort((a,b) =>{
@@ -61,10 +59,8 @@ router.post('/', (req,res,next) => {
                 .catch( (err) => console.log(err));
                     
                                         
-                })
-                .catch(err => {
-                    console.error('Error connecting to events mongo', err)
-                });                
+              
+             
 
 
 //TODO factorizar aqui *************************************************************************

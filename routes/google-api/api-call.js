@@ -94,38 +94,21 @@ function listEvents(auth) {
 module.exports = router;
 
 function populateDb(data) {
-  const mongoose = require('mongoose');
   const Event = require('./../../models/Event');
-
-  const dbName = 'epic-planner-db';
-  const dbUrl = 'mongodb://localhost:27017/';
-  
-  
-  mongoose
-      .connect(dbUrl + dbName, {useNewUrlParser: true, useUnifiedTopology:true})
-          .then( mongoEntry => {
-              const eventsArray =[];
-              
-              data.forEach((googleEvent) => {
-                console.log(googleEvent);
-                
-                const event = new Event({
-                  eventName: googleEvent.summary,
-                  fullAddress: googleEvent.location,
-                  location: 'Sants',
-                  date: googleEvent.start.dateTime.slice(0,10),
-                  startTime: googleEvent.start.dateTime.slice(11,16),
-                  endTime: googleEvent.end.dateTime.slice(11,16),
-                  category:'culture',
-                  meetupLink: googleEvent.description
-                })
-                if (!event.location) console.log(event);
-                
-                //TODO function to check whether the event exist before saving it
-                event.save();
-              })                            
-          })
-          .catch(err => {
-              console.error('Error connecting to events mongo', err)
-          });
+  data.forEach((googleEvent) => {    
+    const event = new Event({
+      eventName: googleEvent.summary,
+      fullAddress: googleEvent.location,
+      location: 'Sants',
+      date: googleEvent.start.dateTime.slice(0,10),
+      startTime: googleEvent.start.dateTime.slice(11,16),
+      endTime: googleEvent.end.dateTime.slice(11,16),
+      category:'culture',
+      meetupLink: googleEvent.description
+    })
+    if (!event.location) console.log(event);
+    
+    //TODO function to check whether the event exist before saving it
+    event.save();
+  })          
 }
