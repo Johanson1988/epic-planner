@@ -30,7 +30,7 @@ router.get('/', (req,res,next) => {
                         }
                         else return -1;      
                 })
-                res.render('./dayplan/edit-dayplan',{selectedDate,dayPlanId, eventsByDate});
+                res.render('./dayplan/edit-dayplan',{selectedDate,dayPlanId, eventsByDate,dayPlanFound});
             })
         })
         .catch( (err) => console.error(err));
