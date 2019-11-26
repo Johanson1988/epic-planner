@@ -50,7 +50,7 @@
                    var addEventBtn = document.querySelector(`#add-event-{{this._id}}`);
                    addEventBtn.addEventListener('click', (e) => {
                         e.preventDefault();
-                         axios.post(`/dayplan/save-event?eventId={{this._id}}&dayPlanId={{../dayPlanId}}`)
+                         axios.post(`/dayplan/save-event?eventId={{this._id}}&dayPlanId={{dayPlanId}}`)
                             .then(response => {
                                 console.log(`{{this.id}}`)
                             })
@@ -61,6 +61,7 @@
                 <form action='/dayplan/event-details' method="GET"
                 >
                 <input type="hidden" name="_id" value="{{this.id}}" /> 
+                <input type="hidden" name="dayPlanId" value="{{dayPlanId}}">
                 <button id='event-info-{{this._id}}' class="event-info" type='submit'>info</button>
                 </form>
                              

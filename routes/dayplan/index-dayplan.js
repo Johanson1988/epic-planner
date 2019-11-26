@@ -11,7 +11,7 @@ router.use('/edit-dayplan', editPlanRouter);
 router.use('/event-details', eventDetailsRouter);
 
 router.get('/select-date', (req,res,next) => {
-    res.render('./dayplan/select-date');
+    res.render('dayplan/select-date');
 });
 
 router.use('/save-event', saveEventRouter);
