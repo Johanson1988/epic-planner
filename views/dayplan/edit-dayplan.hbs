@@ -1,4 +1,6 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <article>
+    <input type=button onClick="location.href='../'" value='Back'>
 
     <h2>{{selectedDate}}</h2>
     <div class="dayplan-fields-container">
@@ -49,23 +51,23 @@
                <button id='add-event-{{this._id}}' class="add-event">+</button>
                <script>
                    var addEventBtn = document.querySelector(`#add-event-{{this._id}}`);
-                   addEventBtn.addEventListener('click', async (e) => {
+                   addEventBtn.addEventListener('click', (e) => {
                         e.preventDefault();
-                        try {
-                            // /dayplan/save?_id={{dayPlanId}}
-                            const response = await fetch(`/dayplan/save-event?eventId={{this._id}}&dayPlanId={{../dayPlanId}}`, {
-                            method: 'post'
-                            });
-                            console.log('Saved!', response);
-                        }
-                        catch(err) {
-                            console.error(`Error: ${err}`);
-                        }
-                      
+                         axios.post(`/dayplan/save-event?eventId={{this._id}}&dayPlanId={{dayPlanId}}`)
+                            .then(response => {
+                                console.log(`{{this.id}}`)
+                            })
+                            .catch((err) => {
+                                console.log('Error: ',err);                            }); 
                    });
                </script>
-
-               <button id=`event-info-{{this._id}}` class="event-info">info</button>
+                <form action='/dayplan/event-details' method="GET"
+                >
+                <input type="hidden" name="_id" value="{{this.id}}" /> 
+                <input type="hidden" name="dayPlanId" value="{{dayPlanId}}">
+                <button id='event-info-{{this._id}}' class="event-info" type='submit'>info</button>
+                </form>
+                             
            </div>
             </div>
             {{/each}}

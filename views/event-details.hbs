@@ -1,0 +1,30 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<h1>Selected Event</h1>
+<article>
+    <p>{{dayPlanId}}</p>
+    <div class='button-container'>
+        {{#if sender}}
+        <form action="/dayplan/event-details/delete" method="POST">
+        <input type="hidden" name="eventId" value="{{selectedEvent._id}}" />
+        <input type="hidden" name="dayplanId" value="{{dayPlanId}}" />
+        <button id='event-details-delete' type="submit">DEL</button>
+        </form>
+        
+     
+        {{else}}
+        <button>ADD</button>
+        {{/if}}
+    </div>
+    <section>
+        <h2>{{selectedEvent.eventName}}</h2>        
+        <p>{{selectedEvent.meetupLink}}</p>        
+        <p>{{selectedEvent.fullAddress}}</p>        
+        <p>{{selectedEvent.startTime}}</p>        
+        <p>{{selectedEvent.endTime}}</p>        
+        <p>{{selectedEvent.location}}</p>        
+        <p>{{selectedEvent.category}}</p>        
+    </section>
+    <div class='button-container'>
+        <input type=button onClick="location.href='../'" value='Back'>
+    </div>
+</article>

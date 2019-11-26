@@ -26,6 +26,19 @@
         
     </div>
     {{/each}}
+<h2>{{this.name}}</h2>
+<h4 class='splice-date'>{{this.date}}</h4>
+
+{{#each this.events}}
+<p><b>{{this.eventName}}</b></p> 
+<p>{{startTime}}</p>
+<form action='/dayplan/event-details' method="GET">            
+    <input type="hidden" name="_id" value="{{this.id}}" /> 
+    <input type="hidden" name="sender" value="home" />
+    <input type="hidden" name="dayPlanId" value="{{../this._id}}"/>
+    <button id='event-info-{{this._id}}' class="event-info" type='submit'>info</button>
+</form>
+{{/each}}
 
     <div class="slider-buttons">
     <button id='slider-left'> < </button>
