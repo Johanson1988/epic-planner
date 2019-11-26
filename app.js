@@ -13,12 +13,11 @@ const path         = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
-const dbName = 'epic-planner-db';
-const dbUrl = 'mongodb://localhost:27017/';
+
 
 
 mongoose
-    .connect(dbUrl + dbName, {useNewUrlParser: true, useUnifiedTopology:true})
+    .connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology:true})
         .then( mongoEntry => {
             console.log(`Connected to Mongo! Database name: "${mongoEntry.connections[0].name}"`)
         })
