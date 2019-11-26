@@ -11,34 +11,16 @@ const Event = require('./../models/Event');
 
 
 router.get('/', (req, res, next) => {
-    
-    mongoose
-    .connect(dbUrl + dbName, {useNewUrlParser: true, useUnifiedTopology:true})
-    .then (() => {
-        const userId = req.session.currentUser._id
-
         User.find({_id: userId})
-            .then ((userData) => {
-               
-                const userAgenda = userData[0].agenda;
-                                
+            .then ((userData) => {               
+                const userAgenda = userData[0].agenda;                                
                     DayPlan.find({_id: {$in: userAgenda}})
                     .populate('events')
                     .then ( (dayPlanFound) => {
-                        res.render('./home', {dayPlanFound}) 
-               
-                // mongoose.connection.close();
+                        res.render('./home', {dayPlanFound});             
             })
-            .catch( (err) => console.log(err));
     })
-    
-    
-})
 
 })
-
-
-
-
 
 module.exports = router;
