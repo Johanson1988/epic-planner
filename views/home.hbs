@@ -1,3 +1,4 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <h1>Day-plan</h1>
 <div class="home-main-container">
 
@@ -11,7 +12,15 @@
         <div class="dayplan-card no-display">
 
         <button class="edit-dayplan-btn" id="edit-dayplanId-{{this._id}}"> ✎ </button>
-       
+        <script>
+            var editDayPlanButton = document.querySelector('#edit-dayplanId-{{this._id}}');
+
+            editDayPlanButton.addEventListener('click', (e) => {
+                axios.get(`/dayplan/modify-dayplan?dayPlanId={{this._id}}`)
+                    .then(()=>console.log('sent'))
+                    .catch((err) => console.error(err));     
+            });
+        </script>
         <h2>{{this.name}}</h2>
         <h4 class='splice-date'>{{this.date}}</h4>
              
