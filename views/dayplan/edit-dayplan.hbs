@@ -51,18 +51,28 @@
                <button id='add-event-{{this._id}}' class="add-event">+</button>
                <script>
                    var addEventBtn = document.querySelector(`#add-event-{{this._id}}`);
-                   addEventBtn.addEventListener('click', async (e) => {
-                        e.preventDefault();
-                        try {
-                            // /dayplan/save?_id={{dayPlanId}}
-                            const response = await fetch(`/dayplan/save-event?eventId={{this._id}}&dayPlanId={{../dayPlanId}}`, {
-                            method: 'post'
-                            });
-                            console.log('Saved!', response);
+                   addEventBtn.addEventListener('click',  async(e) => {
+                        e.preventDefault();                                
+                        if (e.currentTarget.innerHTML === '+') {                            
+                            e.currentTarget.classList.remove("add-event");
+                            e.currentTarget.classList.add("delete-event");
+                            e.currentTarget.innerHTML = '-';
+                            try {
+                                const response = await fetch(`/dayplan/save-event?eventId={{this._id}}&dayPlanId={{../dayPlanId}}`, {
+                                method: 'post'
+                                });                                
+                            }
+                            catch(err) {
+                                console.error(`Error: ${err}`);
+                            }
+                            
+
+                        }else {
+                            e.currentTarget.classList.remove("delete-event");
+                            e.currentTarget.classList.add("add-event");
+                            e.currentTarget.innerHTML = '+';
                         }
-                        catch(err) {
-                            console.error(`Error: ${err}`);
-                        }
+                        
                       
                    });
                </script>
