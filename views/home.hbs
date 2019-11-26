@@ -20,6 +20,12 @@
          <div class="event-text-container">
         <p class="startTime">{{startTime}}h··</p>
         <p><b>{{this.eventName}}</b></p>
+        <form action='/dayplan/event-details' method="GET">            
+            <input type="hidden" name="_id" value="{{this.id}}" /> 
+            <input type="hidden" name="sender" value="home" />
+            <input type="hidden" name="dayPlanId" value="{{../this._id}}"/>
+            <button id='event-info-{{this._id}}' class="event-info" type='submit'>info</button>
+        </form>
         
         </div>
             {{/each}}
