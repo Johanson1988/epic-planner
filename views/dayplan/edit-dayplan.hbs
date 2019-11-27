@@ -48,15 +48,41 @@
                             const parent = document.querySelector(`#buttons-container-{{this._id}}`)
                             const secondChild = document.querySelector(`#form-{{this._id}}`)
                             const nearbyContainer = document.createElement('section');
-                            nearbyContainer.classList.add('nearbyContainer')
+                            nearbyContainer.classList.add('nearby-container')
                             nearbyContainer.innerHTML = `<p>Have an appetite? Check out nearby places?</p>`;
                             
                             const placesYesBtn = document.createElement('button');
-                            placesYesBtn.classList.add('placesYesBtn');
+                            placesYesBtn.classList.add('places-yes-btn');
                             placesYesBtn.innerHTML = 'Yes';
+                            placesYesBtn.addEventListener('click', (e)=> {
+                                e.preventDefault();
+
+                                nearbyContainer.innerHTML = '';
+                                nearbyContainer.innerHTML = `<h3 class="h3-places">Nearby places</h3>`
+
+                                const barPlacesContainer = document.createElement('div');
+                                barPlacesContainer.classList.add('bar-places-container');
+
+                                for (let i=0; i<11;i++) {
+                                    var placeContainer = document.createElement('place-container');
+                                    placeContainer.classList.add('place-container');
+
+                                    placeContainer.innerHTML= `{{#each this.placesNearBy}}
+                                                                    <div>{{this.name}}</div>
+                                                                    
+                                                                {{/each}}`;
+                                    barPlacesContainer.appendChild(placeContainer);
+                                }
+                                nearbyContainer.appendChild(barPlacesContainer);
+
+                            })
+
+
+
+
 
                             const placesNoBtn = document.createElement('button');
-                            placesNoBtn.classList.add('placesNoBtn');
+                            placesNoBtn.classList.add('places-no-btn');
                             placesNoBtn.innerHTML = 'No';
 
                             const placesBtnsContainer = document.createElement('div')
