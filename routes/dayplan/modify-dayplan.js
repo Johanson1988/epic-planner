@@ -32,7 +32,7 @@ router.get('/', (req,res,next) => {
                 })
                 const promisesArray =[];
                 for(let i=0;i<eventsByDate.length;i++) {
-                    let address = eventsByDate[i].fullAddress.replace(/ /g, '+');
+                    let address = eventsByDate[i].fullAddress.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                     promisesArray.push(axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=bar+in+${address}&radius=200&type=bar&key=AIzaSyAx_wYlhBTq4m2KyFXyOTveiXlO89CG5hs`)
                     .then((placesNearBy) => {                                                
                         eventsByDate[i].placesNearBy = placesNearBy.data.results;
