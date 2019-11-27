@@ -15,11 +15,12 @@
             <input type="hidden" name="dayPlanId" value="{{this._id}}">
             <button class="edit-dayplan-btn" id="edit-dayplanId-{{this._id}}" type="submit"> ✎ </button>
         </form>
-
+        {{#if this.events}}
          <form action='/map' method="GET">
             <input type="hidden" name="dayPlanId" value="{{this._id}}">
             <button class="display-map-btn" id="display-map-{{this._id}}" type="submit"> map </button>
         </form>
+        {{/if}}
         
         <h2>{{this.name}}</h2>
         <h4 class='splice-date'>{{this.date}}</h4>

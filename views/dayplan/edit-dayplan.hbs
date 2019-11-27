@@ -42,6 +42,13 @@
                             e.currentTarget.classList.remove("add-event");
                             e.currentTarget.classList.add("delete-event");
                             e.currentTarget.innerHTML = '-';
+                            axios.post(`/dayplan/save-event`, 
+                            {eventId : `{{this._id}}`, dayPlanId : `{{../dayPlanId}}`  })
+                            .then(response => {
+                                console.log(`{{this.id}}`)
+                            })
+                            .catch((err) => {
+                                console.log('Error: ',err);                            });
                         }else {
                             e.currentTarget.classList.remove("delete-event");
                             e.currentTarget.classList.add("add-event");
