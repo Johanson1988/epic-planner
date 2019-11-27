@@ -41,7 +41,6 @@ router.get('/', (req,res,next) => {
                 }
                 Promise.all(promisesArray)
                     .then(() =>{
-                        console.log(eventsByDate[0].placesNearBy[0]);
                         res.render('./dayplan/edit-dayplan',{selectedDate,dayPlanId, eventsByDate,dayPlanFound});
                     })
                             //.formatted_address
