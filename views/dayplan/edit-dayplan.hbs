@@ -94,7 +94,10 @@
                                                  axios.post(`/dayplan/save-event/dine`, 
                                                     {dayPlanId : `{{../dayPlanId}}`,name:placeName,address:placeAddress,time:`{{this.endTime}}`  })
                                                     .then(response => {
-                                                        console.log(`{{../../dayPlanId}}`)
+                                                        console.log(e.currentTarget);
+//    element.parentNode.removeChild(element);
+                                                        nearbyContainer.parentNode.removeChild(nearbyContainer);
+
                                                     })
                                                     .catch((err) => {
                                                         console.log('Error: ',err);                            });
