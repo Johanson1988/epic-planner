@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const axios = require('axios');
 
 const Event = require('./../../models/Event');
 
@@ -48,11 +49,19 @@ router.post('/', (req,res,next) => {
                     
                     User.updateOne({_id:userId}, {$push: {agenda: newDayPlan._id}})
                     .then(() => {
-                        
-                        
-
-
-                        res.render('./dayplan/edit-dayplan',{selectedDate,dayPlanId, eventsByDate});
+                        const promisesArray =[];
+                        for(let i=0;i<eventsByDate.length;i++) {
+                            let address = eventsByDate[i].fullAddress.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                            promisesArray.push(axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=bar+in+${address}&radius=200&type=bar&key=AIzaSyAx_wYlhBTq4m2KyFXyOTveiXlO89CG5hs`)
+                            .then((placesNearBy) => {                                               
+                                eventsByDate[i].placesNearBy = placesNearBy.data.results.slice(0,10);
+                            })
+                            .catch((err) => console.log(err)));
+                        }
+                        Promise.all(promisesArray)
+                            .then(() =>{
+                                res.render('./dayplan/edit-dayplan',{selectedDate,dayPlanId, eventsByDate,newDayPlan});
+                            })
                     })
                     .catch((err) => console.error(err));
                     
