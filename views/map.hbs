@@ -17,13 +17,16 @@
             directionsRenderer.setMap(map);
 
             var request = {
-                origin: 'Big Bang bar',
-                destination: 'Carrer de Castillejos, Barcelona',
+                origin: `{{origin}}`,
+                destination: `{{destination}}`,
+                {{#if waypoints}}
                 waypoints: [ 
-                {
-                    location: 'Razzmatazz',
-                    stopover: true
-                }],
+                {{#each waypoints}}
+                    {location: `{{this.location}}`,
+                      stopover:true},
+                {{/each}}    
+                ],
+                {{/if}}
 
                 travelMode: 'WALKING'
             };

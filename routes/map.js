@@ -26,7 +26,7 @@ router.get('/', (req, res, next) => {
                     stopover: true}
                     waypoints.push(waypoint);
                 }
-                console.log(name, date, events, origin, destination, waypoints);
+                console.log(waypoints);
             res.render('./map', {name, date, events, origin, destination, waypoints});             
         })
 })
