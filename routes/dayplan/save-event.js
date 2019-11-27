@@ -4,6 +4,12 @@ const router = express.Router();
 
 const DayPlan = require('./../../models/Dayplan');
 
+//esto hay que cambiarlo con un buen model
+router.post('/dine', (req,res,next) => {
+    console.log(req.body);
+    const {dayPlanId,name,address,time} = req.body;
+    console.log(dayPlanId,name,address,time);
+})
 
 router.post('/', (req, res, next) => {
     

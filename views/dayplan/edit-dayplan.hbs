@@ -71,6 +71,7 @@
                                                                     <div class='places-nearby-info' id='place-{{this.name}}'>
                                                                         <h4>{{this.name}}</h4>
                                                                         <img style=“padding-right:10px; padding-bottom:10px;” src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference={{this.photo_reference}}&key=AIzaSyAx_wYlhBTq4m2KyFXyOTveiXlO89CG5hs'>
+                                                                        <p>{{this.formatted_address}}</p>
                                                                     </div>
                                                                 {{/each}}`;
                                     
@@ -85,9 +86,19 @@
                                             placesYesBtn2.innerHTML = 'Yes';
                                             addPlaceToDayPlan.appendChild(placesYesBtn2);
                                             placesYesBtn2.addEventListener('click',(e) => {
+                                                console.log(e.currentTarget.parentElement.nextSibling.innerHTML);
                                                 e.preventDefault;
-                                                console.log('yes');
-                                            })
+                                                let placeName = e.currentTarget.parentElement.nextSibling.firstElementChild.innerHTML;
+                                                let placeAddress = e.currentTarget.parentElement.nextSibling.lastElementChild.innerHTML;
+                                                console.log('name',placeName,'place',placeAddress);
+                                                 axios.post(`/dayplan/save-event/dine`, 
+                                                    {dayPlanId : `{{../dayPlanId}}`,name:placeName,address:placeAddress,time:`{{this.startTime}}`  })
+                                                    .then(response => {
+                                                        console.log(`{{../../dayPlanId}}`)
+                                                    })
+                                                    .catch((err) => {
+                                                        console.log('Error: ',err);                            });
+                                            });
                                             var placesNoBtn2 = document.createElement('button');
                                             placesNoBtn2.innerHTML = 'No';
                                             addPlaceToDayPlan.appendChild(placesNoBtn2);
