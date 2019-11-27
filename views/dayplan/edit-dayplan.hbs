@@ -68,20 +68,41 @@
                                     placeContainer.classList.add('place-container');
 
                                     placeContainer.innerHTML= `{{#each this.placesNearBy}}
-                                                                    <div class='places-nearby-info'>
+                                                                    <div class='places-nearby-info' id='place-{{this.name}}'>
                                                                         <h4>{{this.name}}</h4>
                                                                         <img style=“padding-right:10px; padding-bottom:10px;” src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference={{this.photo_reference}}&key=AIzaSyAx_wYlhBTq4m2KyFXyOTveiXlO89CG5hs'>
-                                                                    </div>                              
+                                                                    </div>
                                                                 {{/each}}`;
-                                    barPlacesContainer.appendChild(placeContainer);
+                                    
+                                    var placesArray = placeContainer.childNodes;
+                                    for (var i=0;i<placesArray.length;i++) {
+                                        placesArray[i].addEventListener('click', (e) => {
+                                            e.preventDefault();
+                                            var addPlaceToDayPlan = document.createElement('div');
+                                            addPlaceToDayPlan.classList.add('places-yes-btn');
+                                            addPlaceToDayPlan.innerHTML=`<p>Add this place to the Day Plan?</p>`;
+                                            var placesYesBtn2 = document.createElement('button');
+                                            placesYesBtn2.innerHTML = 'Yes';
+                                            addPlaceToDayPlan.appendChild(placesYesBtn2);
+                                            placesYesBtn2.addEventListener('click',(e) => {
+                                                e.preventDefault;
+                                                console.log('yes');
+                                            })
+                                            var placesNoBtn2 = document.createElement('button');
+                                            placesNoBtn2.innerHTML = 'No';
+                                            addPlaceToDayPlan.appendChild(placesNoBtn2);
+                                            placesNoBtn2.addEventListener('click',(e) => {
+                                                e.preventDefault;
+                                                addPlaceToDayPlan.outerHTML = '';
+                                            })
+                                            //placeContainer.appendChild(addPlaceToDayPlan);
+                                            placeContainer.insertBefore(addPlaceToDayPlan,placesArray[i]);
+                                        });
+                                    }
+                                barPlacesContainer.appendChild(placeContainer);
                                 nearbyContainer.appendChild(barPlacesContainer);
 
                             })
-
-
-
-
-
                             const placesNoBtn = document.createElement('button');
                             placesNoBtn.classList.add('places-no-btn');
                             placesNoBtn.innerHTML = 'No';
