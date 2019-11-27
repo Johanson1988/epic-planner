@@ -32,15 +32,26 @@
             <p>{{this.category}}</p>
            </div> 
 
-           <div class="event-btns-container">
+           <div class="event-btns-container" id='buttons-container-{{this._id}}'>
                <button id='add-event-{{this._id}}' class="add-event">+</button>
+
                <script>
+
                    var addEventBtn = document.querySelector(`#add-event-{{this._id}}`);
 
                    addEventBtn.addEventListener('click',  (e) => {
                         e.preventDefault();                                
                         if (e.currentTarget.innerHTML === '+') {                            
                             e.currentTarget.classList.remove("add-event");
+                            
+                            // display nearby places box
+                            const parent = document.querySelector(`#buttons-container-{{this._id}}`)
+                            const secondChild = document.querySelector(`#form-{{this._id}}`)
+                            const nearbyContainer = document.createElement('section');
+                            nearbyContainer.classList.add('nearbyContainer')
+                            nearbyContainer.innerHTML = `<p>Have an appetite? Check out nearby places?</p>`;
+                            parent.insertBefore(nearbyContainer, secondChild);
+
                             e.currentTarget.classList.add("delete-event");
                             e.currentTarget.innerHTML = '-';
                             axios.post(`/dayplan/save-event`, 
@@ -62,12 +73,11 @@
                             .catch((err) => {
                                 console.log('Error: ',err);                            });
                         }
-                        
-                      
-                   });
+                              });
                </script>
-                <form action='/dayplan/event-details' method="GET"
-                >
+
+
+                <form action='/dayplan/event-details' method="GET" id='form-{{this._id}}'>
                 <input type="hidden" name="_id" value="{{this.id}}" /> 
                 <input type="hidden" name="dayPlanId" value="{{dayPlanId}}">
                 <button id='event-info-{{this._id}}' class="event-info" type='submit'>info</button>
