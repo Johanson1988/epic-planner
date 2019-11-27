@@ -13,7 +13,8 @@ const eventSchema = new Schema({
     price: { type: String },
     category: { type: String, enum: ["culture", "music", "workshop"], required: true  },
     coordinates: {type: {type: String, type: String} },
-    meetupLink: {type: String}
+    meetupLink: {type: String},
+    placesNearBy: {type: Array}
 },
 {
     timestamps: {
