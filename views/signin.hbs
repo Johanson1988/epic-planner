@@ -1,119 +1,121 @@
 <!-- TODO strength.css script insert somewhere-->
 
+<body class="body-home">
+    <h1 class="h1-home">Sign in</h1>
 
-<h1>Sign in</h1>
+    <article class="log-in signin-forms">
+        <h2 class="h2-home">Start being epic!</h2>
+        <form action="/auth/login" method="POST">
+            <label for="email"></label>
+            <input class="input-home" type="email" value="Email" name="email" required>
 
-<article class= "log-in signin-forms">
-    <h2>Log in form</h2>
-<form action="/auth/login"  method= "POST">
-    <label for="email">Email</label>
-    <input  type= "email" name= "email" required>
+            <label for="password"></label>
+            <input class="input-home" type="password" value="Password" name="password" required>
 
-    <label for="password">Password</label>
-    <input type= "password" name= "password" required>
+            <button id="login-button" type="submit">Log in</button>
 
-    <button id="login-button" type="submit">Log in</button>
+        </form>
+        {{#if errorMessage}}
+        <span>{{errorMessage}}</span>
+        {{/if}}
+    </article>
 
-</form>
-{{#if errorMessage}}
-<span>{{errorMessage}}</span>
-{{/if}}
-</article>
+    <div id='signup-button'>
+        <p>New to Epic-Planner?</p>
+        <p id='signin-screen-status'>SIGN UP</p>
+    </div>
+    <script>
+        const showSignUpButton = document.querySelector('#signup-button');
+        showSignUpButton.addEventListener('click', () => {
+            const loginForm = document.querySelector('.log-in');
+            const signupForm = document.querySelector('.sign-up');
+            const status = document.querySelector('#signin-screen-status');
+            const message = document.querySelector('#signup-button p')
 
-<div id='signup-button'>
-    <p>New to Epic-Planner?</p>
-    <p id='signin-screen-status'>SIGN UP</p>
-</div>
-<script>
-    const showSignUpButton = document.querySelector('#signup-button');
-    showSignUpButton.addEventListener('click', () => {
-        const loginForm = document.querySelector('.log-in');
-        const signupForm = document.querySelector('.sign-up');
-        const status = document.querySelector('#signin-screen-status');
-        const message = document.querySelector('#signup-button p')
-        
-        if (status.innerHTML==='SIGN UP') {
-            loginForm.setAttribute('class', 'no-display log-in signin-forms');
-            signupForm.removeAttribute('class', 'no-display');
-            signupForm.setAttribute('class', ' sign-up signin-forms');
+            if (status.innerHTML === 'SIGN UP') {
+                loginForm.setAttribute('class', 'no-display log-in signin-forms');
+                signupForm.removeAttribute('class', 'no-display');
+                signupForm.setAttribute('class', ' sign-up signin-forms');
 
-            status.innerHTML = 'LOG IN'
-            message.innerHTML = 'Already have an account?'
-        }else {
-            loginForm.removeAttribute('class', 'no-display');
-            loginForm.setAttribute('class', 'log-in signin-forms');
-            signupForm.setAttribute('class', 'no-display sign-up signin-forms');
-            status.innerHTML = 'SIGN UP'
-            message.innerHTML = 'New to Epic-Planner?'
-        }
-        
+                status.innerHTML = 'LOG IN'
+                message.innerHTML = 'Already have an account?'
+            } else {
+                loginForm.removeAttribute('class', 'no-display');
+                loginForm.setAttribute('class', 'log-in signin-forms');
+                signupForm.setAttribute('class', 'no-display sign-up signin-forms');
+                status.innerHTML = 'SIGN UP'
+                message.innerHTML = 'New to Epic-Planner?'
+            }
 
-    })
-</script>
 
-<article class= "sign-up signin-forms no-display">
-    <h2>Sign up form</h2>
+        })
+    </script>
 
-<form action="/auth/signup"  method= "POST">
-    <label for="fullName">Who are you?</label>
-    <input  type= "text" name= "fullName" required>
-    
-    <label for="email">Email</label>
-    <input  type= "email" name= "email" required>
+    <article class="sign-up signin-forms no-display">
+        <h2 class="h2-home">You talkin to me?</h2>
 
-    <label for="password">Password</label>
-    <input type= "password" id= "user-password" name= "password" required>
+        <form action="/auth/signup" method="POST">
+            <label for="fullName"></label>
+            <input class="input-home" value="name" type="text" name="fullName" required>
 
-    <label class="location" for="location">Location</label>
-    <select class="districts" name= "location" required> 
-        <option value = "Barceloneta">Barceloneta</option>
-        <option value = "Forum">Forum</option>
-        <option value = "Gracia">Gracia</option>
-        <option value = "Horta-Guinardó-">Horta-Guinardó</option>
-        <option value = "Les Corts">Les Corts</option>
-        <option value = "Poble Nou">Poble Nou</option>
-        <option value = "Port Olimpic">Port Olimpic</option>
-        <option value = "Port Vell">Port Vell</option>
-        <option value = "Sant Andreu">Sant Andreu</option>
-        <option value = "Sants">Sants</option>
-        <option value = "Sant Martí">Sant Martí</option>
-        <option value = "Sarrià-Tibidabo">Sarrià-Tibidabo</option>
-    </select>
-    <section id='user-keywords'>
-        <p>Select your areas of interest</p>
-        <label for="music">Music</label>
-        <input type= "checkbox" name= "music">
+            <label for="email"></label>
+            <input class="input-home" value="email" type="email" name="email" required>
 
-        <label for="culture">Culture</label>
-        <input type= "checkbox" name= "culture">
+            <label for="password"></label>
+            <input class="input-home" value="Password" type="password" id="user-password" name="password" required>
 
-        <label for="food">Food</label>
-        <input type= "checkbox" name= "food">
-    </section> 
+            <label class="location-home" for="location"></label>
+            <select class="districts-home" name="location" required>
+                <option value="Location">Where do you live?</option>
+                <option value="Barceloneta">Barceloneta</option>
+                <option value="Forum">Forum</option>
+                <option value="Gracia">Gracia</option>
+                <option value="Horta-Guinardó-">Horta-Guinardó</option>
+                <option value="Les Corts">Les Corts</option>
+                <option value="Poble Nou">Poble Nou</option>
+                <option value="Port Olimpic">Port Olimpic</option>
+                <option value="Port Vell">Port Vell</option>
+                <option value="Sant Andreu">Sant Andreu</option>
+                <option value="Sants">Sants</option>
+                <option value="Sant Martí">Sant Martí</option>
+                <option value="Sarrià-Tibidabo">Sarrià-Tibidabo</option>
+            </select>
+            <section id='user-keywords-home'>
+                <p>Select your areas of interest</p>
+                <label for="music">Music</label>
+                <input type="checkbox" name="music">
 
-    <button class="submit" type="submit">Submit</button>
+                <label for="culture">Culture</label>
+                <input type="checkbox" name="culture">
 
-</form>
+                <label for="food">Food</label>
+                <input type="checkbox" name="food">
+            </section>
 
-{{#if errorMessage}}
-<span>{{errorMessage}}</span>
-{{/if}}
+            <button class="submit-home" type="submit">SIGN UP</button>
 
-</article>
+        </form>
 
+        {{#if errorMessage}}
+        <span>{{errorMessage}}</span>
+        {{/if}}
+
+    </article>
+
+</body>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="./scripts/strength.js"></script>
 
 <script>
-  $(document).ready(function($) {
-    
-$('#user-password').strength({
+    $(document).ready(function ($) {
+
+        $('#user-password').strength({
             strengthClass: 'strength',
             strengthMeterClass: 'strength_meter',
             strengthButtonClass: 'button_strength',
             strengthButtonText: 'Show Password',
             strengthButtonTextToggle: 'Hide Password'
         });
-});
+    });
 </script>

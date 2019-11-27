@@ -2,15 +2,17 @@
 
 <div class="profile-info">
     <div class="avatar">
-        <img src="/images/avatar-Duncs.png">
+        <input type="checkbox" id="hack" />
+        <label class="label-profile" for="hack"></label><br />
+        {{!-- <img src="/images/avatar-Duncs.png"> --}}
     </div>
     <div class="profile-details">
         <form action="/edit-profile" method="POST">
 
-            <label for="fullName">Full name</label>
+            <label for="fullName"></label>
             <input type="text" name='fullName' value='{{currentUserData.fullName}}' required>
 
-            <label for="email">email</label>
+            <label for="email"></label>
             <input type="text" name='email' value='{{currentUserData.email}}' required>
 
             <section id='user-keywords'>

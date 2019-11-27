@@ -1,3 +1,4 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <h1>Day-plan</h1>
 <div class="home-main-container">
 
@@ -9,9 +10,11 @@
 
         {{#each dayPlanFound}} 
         <div class="dayplan-card no-display">
-
-        <button class="edit-dayplan-btn" id="edit-dayplanId-{{this._id}}"> ✎ </button>
-       
+        <form action='/dayplan/modify-dayplan' method="GET">
+            <input type="hidden" name="dayPlanId" value="{{this._id}}">
+            <button class="edit-dayplan-btn" id="edit-dayplanId-{{this._id}}" type="submit"> ✎ </button>
+        </form>
+        
         <h2>{{this.name}}</h2>
         <h4 class='splice-date'>{{this.date}}</h4>
              

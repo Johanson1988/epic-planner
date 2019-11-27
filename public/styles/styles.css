@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 
-body {
+.body-home {
     font-family: "Open Sans", sans-serif;
     font-size: 14px;
+    background-color: #ec2c32;
 }
 
 /*
@@ -39,7 +40,7 @@ nav {
 }
 
 nav img {
-    width: 30%;
+    width: 20%;
     max-width: 250px;
     min-width: 200px;
 }
@@ -51,6 +52,10 @@ h1 {
     text-align: center;
 }
 
+.h1-home {
+    color: white;
+}
+
 h2 {
     font-family: "Open Sans", sans-serif;
     font-weight: lighter;
@@ -58,7 +63,22 @@ h2 {
     text-align: center;
 }
 
+.h2-home {
+    font-family: "Open Sans", sans-serif;
+    font-style: italic;
+    color: white;
+
+}
+
 /*----- SIGN IN PAGE----- */
+
+.input-home {
+    background-color: #ec2c32;
+    color: white;
+
+    border-bottom: solid 2px white; 
+}
+
 
 .signin-forms {
     display: flex;
@@ -78,7 +98,10 @@ h2 {
 }
 
 .signin-forms input {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border: none;
+    border-bottom: solid 1px white;
 }
 
 #signup-button {
@@ -91,7 +114,21 @@ h2 {
 
     font-family: "Open Sans", sans-serif;
     font-weight: bold;
+    color: white;
+}
+.submit-home {
+    margin-top: 6px;
+    padding: 4px 20px;
+
+    background-color: white;
+
+    border: none;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    font-size: 16px;
     color: #3972f5;
+
+    border-radius: 40px;
 }
 
 #signin-screen-status,
@@ -102,8 +139,8 @@ h2 {
     background-color: #3972f5;
 
     font-family: "Open Sans", sans-serif;
-    font-weight: lighter;
-    font-size: 20px;
+    font-weight: reu;
+    font-size: 16px;
     color: white;
 
     border-radius: 40px;
@@ -112,20 +149,28 @@ h2 {
 #login-button {
     padding: 4px 30px;
 
-    background-color: #ec2c32;
+    background-color: white;
 
     font-family: "Open Sans", sans-serif;
     font-weight: lighter;
-    font-size: 20px;
-    color: white;
+    font-size: 16px;
+    color: #ec2c32;
 
     border-radius: 40px;
     border: solid 2px #ec2c32;
 }
 
-.location {
-    padding-top: 20px;
+.location-home {
+    padding-top: 4px ;
+    color: white;
 }
+
+.districts-home {
+    background-color: white;
+    font-size: 14px;
+    font-family: "Open Sans", sans-serif;
+}
+
 
 .districts {
     padding: 4px 20px;
@@ -145,9 +190,19 @@ h2 {
     margin-bottom: 20px;
 }
 
-#user-keywords label {
+#user-keywords-home label {
     margin-bottom: 20px;
-    color: #3972f5;
+    color: white;
+}
+
+#user-keywords-home p {
+    color: white;
+    text-align: center;
+    border-bottom: solid 1px white;
+}
+
+.checkbox {
+    border-radius: 10px;
 }
 
 /*----- HOME ----- */
@@ -174,10 +229,10 @@ h2 {
     border-bottom: solid 2px #3972f5;
 }
 
-.dayplan-card {
-    /* border: solid 2px #3972f5; */
-    /* max-width: 360px ; */
-}
+/* .dayplan-card {
+    border: solid 2px #3972f5; 
+    max-width: 360px ; 
+} */
 
 .splice-date {
     color: #3972f5;
@@ -376,15 +431,33 @@ h2 {
     padding: 0px 10px;
     display: flex;
     flex-direction: column;
-    justify-: center;
+    justify-content: center;
     align-content: center;
 }
 
 /* ------EDIT PROFILE----- */
 
-.avatar img {
+/* .avatar img {
     width: 200px;
-}
+} */
+
+#hack {
+    display: none;
+  }
+  
+  .label-profile {
+    display: inline-block ;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    background-image: url(../images/avatar-Duncs.png);
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center; 
+  }
+  #hack:checked + label {
+    background-image: url(../images/avatar-Lucia.png);
+  }
 
 .profile-info {
     display: flex;
@@ -405,23 +478,38 @@ h2 {
     text-align: center;
 }
 
-.profile-info button,
-input {
+.profile-info input {
     margin: 0 10px 0px 10px;
-    background-color: #ec2c32;
-    color: #fff;
+    background-color:white;
+    border: none;
+    border-bottom: solid 1px #ec2c32;
+    color: #ec2c32;
     padding: 10px 15px;
 
     /* text-transform: uppercase; */
     font-size: 12px;
     font-weight: bold;
 
-    border: none;
+    /* border: none;
     border-radius: 3px;
     box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.2);
     -moz-box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: background-color 0.3s ease;
-    position: relative;
+    position: relative; */
+}
+
+.profile-info button {
+    margin-top: 10px;
+    padding: 4px 20px;
+
+    background-color: #3972f5;
+
+    font-family: "Open Sans", sans-serif;
+    font-weight: lighter;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 40px;
 }

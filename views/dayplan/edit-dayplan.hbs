@@ -6,7 +6,7 @@
     <div class="dayplan-fields-container">
     <form action="/dayplan/save?_id={{dayPlanId}}" method="POST">
         <label for="name">Dayplan name</label>
-        <input type="text" name='name' value='{{name}}' required>
+        <input type="text" name='name' value='{{dayPlanFound.name}}' required>
         <button class="dayplan-name-save-btn">SAVE</button>
     </form>
         <label class="location" for="location">Location</label>
