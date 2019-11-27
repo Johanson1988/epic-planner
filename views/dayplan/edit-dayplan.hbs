@@ -50,6 +50,27 @@
                             const nearbyContainer = document.createElement('section');
                             nearbyContainer.classList.add('nearbyContainer')
                             nearbyContainer.innerHTML = `<p>Have an appetite? Check out nearby places?</p>`;
+                            
+                            const placesYesBtn = document.createElement('button');
+                            placesYesBtn.classList.add('placesYesBtn');
+                            placesYesBtn.innerHTML = 'Yes';
+
+                            const placesNoBtn = document.createElement('button');
+                            placesNoBtn.classList.add('placesNoBtn');
+                            placesNoBtn.innerHTML = 'No';
+
+                            const placesBtnsContainer = document.createElement('div')
+                            placesBtnsContainer.classList.add('places-btns-container');
+                            placesBtnsContainer.appendChild(placesYesBtn);
+                            placesBtnsContainer.appendChild(placesNoBtn);
+                            nearbyContainer.appendChild(placesBtnsContainer);
+
+
+                            placesNoBtn.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                parent.removeChild(nearbyContainer);
+                            } )
+
                             parent.insertBefore(nearbyContainer, secondChild);
 
                             e.currentTarget.classList.add("delete-event");
