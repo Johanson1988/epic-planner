@@ -96,7 +96,7 @@
                                                 addPlaceToDayPlan.outerHTML = '';
                                             })
                                             //placeContainer.appendChild(addPlaceToDayPlan);
-                                            placeContainer.insertBefore(addPlaceToDayPlan,placesArray[i]);
+                                            placeContainer.insertBefore(addPlaceToDayPlan,e.currentTarget);
                                         });
                                     }
                                 barPlacesContainer.appendChild(placeContainer);
