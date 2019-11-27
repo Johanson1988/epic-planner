@@ -35,13 +35,12 @@ router.get('/', (req,res,next) => {
                     let address = eventsByDate[i].fullAddress.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                     promisesArray.push(axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=bar+in+${address}&radius=200&type=bar&key=AIzaSyAx_wYlhBTq4m2KyFXyOTveiXlO89CG5hs`)
                     .then((placesNearBy) => {                                               
-                        eventsByDate[i].placesNearBy = placesNearBy.data.results;
+                        eventsByDate[i].placesNearBy = placesNearBy.data.results.slice(0,10);
                     })
                     .catch((err) => console.log(err)));
                 }
                 Promise.all(promisesArray)
                     .then(() =>{
-                        console.log(eventsByDate[0].placesNearBy[0].photos);
                         
                         res.render('./dayplan/edit-dayplan',{selectedDate,dayPlanId, eventsByDate,dayPlanFound});
                     })
