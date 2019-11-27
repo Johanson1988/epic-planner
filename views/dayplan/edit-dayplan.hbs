@@ -8,22 +8,7 @@
         <label for="name">Dayplan name</label>
         <input type="text" name='name' value='{{dayPlanFound.name}}' required>
         <button class="dayplan-name-save-btn">SAVE</button>
-    </form>
-        <label class="location" for="location">Location</label>
-        <select class="districts" name= "location" required> 
-        <option value = "Barceloneta">Barceloneta</option>
-        <option value = "Forum">Forum</option>
-        <option value = "Gracia">Gracia</option>
-        <option value = "Horta-Guinardó-">Horta-Guinardó</option>
-        <option value = "Les Corts">Les Corts</option>
-        <option value = "Poble Nou">Poble Nou</option>
-        <option value = "Port Olimpic">Port Olimpic</option>
-        <option value = "Port Vell">Port Vell</option>
-        <option value = "Sant Andreu">Sant Andreu</option>
-        <option value = "Sants">Sants</option>
-        <option value = "Sant Martí">Sant Martí</option>
-        <option value = "Sarrià-Tibidabo">Sarrià-Tibidabo</option>
-    </select>
+    </form>        
     <section id='user-keywords'>
         <p>Select your areas of interest</p>
         <label for="music">Music</label>
@@ -58,8 +43,13 @@
                             e.currentTarget.classList.add("delete-event");
                             e.currentTarget.innerHTML = '-';
                            axios.post(`/dayplan/save-event?eventId={{this._id}}&dayPlanId={{../dayPlanId}}`)
-                            .then(response => {
-                                console.log(`{{this.id}}`)
+                            .then(() => {
+                                axios.get('https://maps.googleapis.com/maps/api/place/textsearch/json?query=bar+in+' + `{{this.fullAddress}}` + '&radius=200&type=bar&key=AIzaSyAx_wYlhBTq4m2KyFXyOTveiXlO89CG5hs')
+                                .then( (response) => {
+                                    const listNearByPlaces = response.data;
+                                    console.log(listNearByPlaces);
+
+                                })                
                             })
                             .catch((err) => {
                                 console.log('Error: ',err);                            });
