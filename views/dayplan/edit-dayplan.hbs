@@ -92,7 +92,7 @@
                                                 let placeAddress = e.currentTarget.parentElement.nextSibling.lastElementChild.innerHTML;
                                                 console.log('name',placeName,'place',placeAddress);
                                                  axios.post(`/dayplan/save-event/dine`, 
-                                                    {dayPlanId : `{{../dayPlanId}}`,name:placeName,address:placeAddress,time:`{{this.startTime}}`  })
+                                                    {dayPlanId : `{{../dayPlanId}}`,name:placeName,address:placeAddress,time:`{{this.endTime}}`  })
                                                     .then(response => {
                                                         console.log(`{{../../dayPlanId}}`)
                                                     })

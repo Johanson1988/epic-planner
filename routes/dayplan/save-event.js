@@ -8,7 +8,9 @@ const Event = require('./../../models/Event');
 //esto hay que cambiarlo con un buen model
 router.post('/dine', (req,res,next) => {
     const {dayPlanId,name,address,time} = req.body;
+    console.log(time)
     Event.create({eventName:name,fullAddress:address,category:"food",startTime:time})
+    
         .then( (event) =>{
             console.log(event);
             // axios.post('/dayplan/save-event',{eventId:event._id, dayPlanId:dayPlanId})
