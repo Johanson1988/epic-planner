@@ -99,6 +99,9 @@ h2 {
 
 .signin-forms input {
     margin-bottom: 10px;
+    font-size: 14px;
+    border: none;
+    border-bottom: solid 1px white;
 }
 
 #signup-button {
