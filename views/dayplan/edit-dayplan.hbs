@@ -42,19 +42,6 @@
                             e.currentTarget.classList.remove("add-event");
                             e.currentTarget.classList.add("delete-event");
                             e.currentTarget.innerHTML = '-';
-                           axios.post(`/dayplan/save-event?eventId={{this._id}}&dayPlanId={{../dayPlanId}}`)
-                            .then(() => {
-                                axios.get('https://maps.googleapis.com/maps/api/place/textsearch/json?query=bar+in+' + `{{this.fullAddress}}` + '&radius=200&type=bar&key=AIzaSyAx_wYlhBTq4m2KyFXyOTveiXlO89CG5hs')
-                                .then( (response) => {
-                                    const listNearByPlaces = response.data;
-                                    console.log(listNearByPlaces);
-
-                                })                
-                            })
-                            .catch((err) => {
-                                console.log('Error: ',err);                            });
-                            
-
                         }else {
                             e.currentTarget.classList.remove("delete-event");
                             e.currentTarget.classList.add("add-event");

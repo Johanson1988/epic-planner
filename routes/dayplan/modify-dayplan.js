@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const DayPlan = require('./../../models/Dayplan');
 const Event = require('./../../models/Event');
+const axios = require('axios');
 
 
 router.get('/', (req,res,next) => {
-    console.log(req.query,req.body,req.params);
     const {dayPlanId} = req.query;
 
     DayPlan.findOne({_id:dayPlanId})
@@ -30,7 +30,21 @@ router.get('/', (req,res,next) => {
                         }
                         else return -1;      
                 })
-                res.render('./dayplan/edit-dayplan',{selectedDate,dayPlanId, eventsByDate,dayPlanFound});
+                const promisesArray =[];
+                for(let i=0;i<eventsByDate.length;i++) {
+                    let address = eventsByDate[i].fullAddress.replace(/ /g, '+');
+                    promisesArray.push(axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=bar+in+${address}&radius=200&type=bar&key=AIzaSyAx_wYlhBTq4m2KyFXyOTveiXlO89CG5hs`)
+                    .then((placesNearBy) => {                                                
+                        eventsByDate[i].placesNearBy = placesNearBy.data.results;
+                    })
+                    .catch((err) => console.log(err)));
+                }
+                Promise.all(promisesArray)
+                    .then(() =>{
+                        console.log(eventsByDate[0].placesNearBy);
+                        res.render('./dayplan/edit-dayplan',{selectedDate,dayPlanId, eventsByDate,dayPlanFound});
+                    })
+                
             })
         })
         .catch( (err) => console.error(err));
