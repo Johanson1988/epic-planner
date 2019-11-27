@@ -12,13 +12,13 @@
     <section id='user-keywords'>
         <p>Select your areas of interest</p>
         <label for="music">Music</label>
-        <input type= "checkbox" name= "music" id='music-filter'>
+        <input type= "checkbox" name= "music" id='music-filter' checked>
 
         <label for="culture">Culture</label>
-        <input type= "checkbox" name= "culture" id='culture-filter'>
+        <input type= "checkbox" name= "culture" id='culture-filter' checked>
 
         <label for="food">Food</label>
-        <input type= "checkbox" name= "food" id='food-filter'>
+        <input type= "checkbox" name= "food" id='food-filter' checked>
     </section>
     </div>
     <div class="event-results-container">
@@ -36,6 +36,7 @@
                <button id='add-event-{{this._id}}' class="add-event">+</button>
                <script>
                    var addEventBtn = document.querySelector(`#add-event-{{this._id}}`);
+
                    addEventBtn.addEventListener('click',  (e) => {
                         e.preventDefault();                                
                         if (e.currentTarget.innerHTML === '+') {                            
