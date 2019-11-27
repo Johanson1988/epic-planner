@@ -4,6 +4,14 @@ const DayPlan = require('./../../models/Dayplan');
 const Event = require('./../../models/Event');
 const axios = require('axios');
 
+router.post('/delete', (req,res,next) => {
+
+    const {dayPlanId} = req.body;
+    DayPlan.deleteOne({_id:dayPlanId})
+        .then(() => res.redirect('/'))
+        .catch((err) => console.error(err));
+})
+
 
 router.get('/', (req,res,next) => {
     const {dayPlanId} = req.query;

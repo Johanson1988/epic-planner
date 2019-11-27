@@ -15,6 +15,11 @@
             <input type="hidden" name="dayPlanId" value="{{this._id}}">
             <button class="edit-dayplan-btn" id="edit-dayplanId-{{this._id}}" type="submit"> ✎ </button>
         </form>
+        <form action='/dayplan/modify-dayplan/delete' method="POST">
+            <input type="hidden" name="dayPlanId" value="{{this._id}}">
+            <button class="delete-dayplan-btn" id="delete-dayplanId-{{this._id}}" type="submit">Delete Dayplan</button>
+        </form>
+           
         {{#if this.events}}
          <form action='/map' method="GET">
             <input type="hidden" name="dayPlanId" value="{{this._id}}">
@@ -81,7 +86,7 @@
         //Slider
         const cardsList = document.querySelectorAll('.dayplan-card');
         const cardsArray = [...cardsList];
-        cardsArray[0].setAttribute('class', 'dayplan-card dayplan-card-active');
+        if (cardsArray) cardsArray[0].setAttribute('class', 'dayplan-card dayplan-card-active');
 
         const sliderLeft = document.querySelector('#slider-left');
         const sliderRight = document.querySelector('#slider-right');
