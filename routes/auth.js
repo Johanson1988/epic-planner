@@ -33,7 +33,11 @@ router.post('/signup', (req, res, next) => {
                 const salt = bcrypt.genSaltSync(saltRounds);
                 const hashedPassword = bcrypt.hashSync(password, salt);
                 User.create({fullName, email, password: hashedPassword, location})
-                    .then(() => res.redirect('/')) // TODO check route
+                    .then((createdUser) => {
+                        req.session.currentUser = createdUser;
+                        res.redirect('/');
+
+                    }) // TODO check route
                     .catch(() => res.render ('signin', {errorMessage:"An error while creating User"}) /// <<<--- insert here)
                     );
             })

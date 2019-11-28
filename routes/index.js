@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-
+const logoutRouter = require('./logout');
 const authRouter = require('./auth');
 const signinRouter = require('./signin');
 const editProfileRouter =require('./edit-profile')
@@ -25,6 +25,8 @@ router.use((req,res,next)=> {
 
 //Edit-Profile
 router.use('/edit-profile', editProfileRouter);
+
+router.use('/logout', logoutRouter);
 
 //Dayplan
 router.use('/dayplan', dayplanRouter);

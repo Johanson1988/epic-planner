@@ -38,6 +38,18 @@
  </div>
 
 
+        <form action='/dayplan/modify-dayplan/delete' method="POST">
+            <input type="hidden" name="dayPlanId" value="{{this._id}}">
+            <button class="delete-dayplan-btn" id="delete-dayplanId-{{this._id}}" type="submit">Delete Dayplan</button>
+        </form>
+           
+        {{#if this.events}}
+         <form action='/map' method="GET">
+            <input type="hidden" name="dayPlanId" value="{{this._id}}">
+            <button class="display-map-btn" id="display-map-{{this._id}}" type="submit"> map </button>
+        </form>
+        {{/if}}
+        
         <h2>{{this.name}}</h2>
         <h3 class='splice-date'>{{this.date}}</h3>
 
@@ -111,7 +123,7 @@
         //Slider
         const cardsList = document.querySelectorAll('.dayplan-card');
         const cardsArray = [...cardsList];
-        cardsArray[0].setAttribute('class', 'dayplan-card dayplan-card-active');
+        if (cardsArray) cardsArray[0].setAttribute('class', 'dayplan-card dayplan-card-active');
 
         const sliderLeft = document.querySelector('#slider-left');
         const sliderRight = document.querySelector('#slider-right');

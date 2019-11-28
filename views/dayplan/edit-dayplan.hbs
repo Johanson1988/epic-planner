@@ -68,20 +68,55 @@
                                     placeContainer.classList.add('place-container');
 
                                     placeContainer.innerHTML= `{{#each this.placesNearBy}}
-                                                                    <div class='places-nearby-info'>
+                                                                    <div class='places-nearby-info' id='place-{{this.name}}'>
                                                                         <h4>{{this.name}}</h4>
                                                                         <img style=“padding-right:10px; padding-bottom:10px;” src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference={{this.photo_reference}}&key=AIzaSyAx_wYlhBTq4m2KyFXyOTveiXlO89CG5hs'>
-                                                                    </div>                              
+                                                                        <p>{{this.formatted_address}}</p>
+                                                                    </div>
                                                                 {{/each}}`;
-                                    barPlacesContainer.appendChild(placeContainer);
+                                    
+                                    var placesArray = placeContainer.childNodes;
+                                    for (var i=0;i<placesArray.length;i++) {
+                                        placesArray[i].addEventListener('click', (e) => {
+                                            e.preventDefault();
+                                            var addPlaceToDayPlan = document.createElement('div');
+                                            addPlaceToDayPlan.classList.add('places-yes-btn');
+                                            addPlaceToDayPlan.innerHTML=`<p>Add this place to the Day Plan?</p>`;
+                                            var placesYesBtn2 = document.createElement('button');
+                                            placesYesBtn2.innerHTML = 'Yes';
+                                            addPlaceToDayPlan.appendChild(placesYesBtn2);
+                                            placesYesBtn2.addEventListener('click',(e) => {
+                                                console.log(e.currentTarget.parentElement.nextSibling.innerHTML);
+                                                e.preventDefault;
+                                                let placeName = e.currentTarget.parentElement.nextSibling.firstElementChild.innerHTML;
+                                                let placeAddress = e.currentTarget.parentElement.nextSibling.lastElementChild.innerHTML;
+                                                console.log('name',placeName,'place',placeAddress);
+                                                 axios.post(`/dayplan/save-event/dine`, 
+                                                    {dayPlanId : `{{../dayPlanId}}`,name:placeName,address:placeAddress,time:`{{this.endTime}}`  })
+                                                    .then(response => {
+                                                        console.log(e.currentTarget);
+//    element.parentNode.removeChild(element);
+                                                        nearbyContainer.parentNode.removeChild(nearbyContainer);
+
+                                                    })
+                                                    .catch((err) => {
+                                                        console.log('Error: ',err);                            });
+                                            });
+                                            var placesNoBtn2 = document.createElement('button');
+                                            placesNoBtn2.innerHTML = 'No';
+                                            addPlaceToDayPlan.appendChild(placesNoBtn2);
+                                            placesNoBtn2.addEventListener('click',(e) => {
+                                                e.preventDefault;
+                                                addPlaceToDayPlan.outerHTML = '';
+                                            })
+                                            //placeContainer.appendChild(addPlaceToDayPlan);
+                                            placeContainer.insertBefore(addPlaceToDayPlan,e.currentTarget);
+                                        });
+                                    }
+                                barPlacesContainer.appendChild(placeContainer);
                                 nearbyContainer.appendChild(barPlacesContainer);
 
                             })
-
-
-
-
-
                             const placesNoBtn = document.createElement('button');
                             placesNoBtn.classList.add('places-no-btn');
                             placesNoBtn.innerHTML = 'No';
