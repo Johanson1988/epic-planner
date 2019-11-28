@@ -257,6 +257,14 @@ h2 {
     border-bottom: solid 2px #3972f5;
 }
 
+.delete-dayplan-btn img{
+    width: 40px;
+    height: 40px;
+
+    border-radius: 40px;
+    border: solid 2px #3972f5;
+
+}
 .dayplan-card, .event-details-card {
     /* border: solid 2px #3972f5;  */
     max-width: 360px;
@@ -296,9 +304,23 @@ h2 {
 }
 
 .edit-dayplan-btn,
-.display-map-btn {
+.display-map-btn,
+.delete-dayplan-btn {
     background-color: white;
     border: none;
+}
+
+.delete-event-details-btn {
+    background-color: white;
+    border: none;
+}
+
+.delete-event-details-btn img{
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 40px;
+    border: solid 2px #3972f5;
 }
 
 /* slider arrow stylings */
@@ -308,6 +330,8 @@ h2 {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
+    margin-top: -60px;
 }
 
 #slider-left,
@@ -358,7 +382,7 @@ h2 {
     display: flex;
     flex-direction: row;
     align-items: center;
-
+    min-width: 100%;
     padding-right: 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -400,7 +424,8 @@ h2 {
 }
 
 .add-dayplan-container button {
-    margin-top: 40px;
+    margin-top: 30px;
+    margin-bottom: 20px;
     padding: 4px 20px;
 
     background-color: #3972f5;
@@ -503,6 +528,13 @@ h2 {
     margin-right: 4px;
     margin-left: 4px;
 }
+
+.edit-dayplan-top-btns input {
+    margin-top: -10px;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
 
 .dayplan-fields-container {
     display: flex;
@@ -729,7 +761,7 @@ h2 {
 
 /* Display event details */
 
-.button-container button, input {
+.button-container input {
     margin-top: 10px;
     padding: 4px 20px;
 

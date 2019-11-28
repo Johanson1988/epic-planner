@@ -36,20 +36,22 @@
             <input type="hidden" name="dayPlanId" value="{{this._id}}">
             <button class="edit-dayplan-btn" id="edit-dayplanId-{{this._id}}" type="submit"><img src="/../images/edit-icon.png"></button>
         </form>
+
+         <form action='/dayplan/modify-dayplan/delete' method="POST">
+            <input type="hidden" name="dayPlanId" value="{{this._id}}">
+            <button class="delete-dayplan-btn" id="delete-dayplanId-{{this._id}}" type="submit"><img src="/../images/delete-icon.png"></button>
+        </form>
  </div>
 
 
-        <form action='/dayplan/modify-dayplan/delete' method="POST">
-            <input type="hidden" name="dayPlanId" value="{{this._id}}">
-            <button class="delete-dayplan-btn" id="delete-dayplanId-{{this._id}}" type="submit">Delete Dayplan</button>
-        </form>
+       
            
-        {{#if this.events}}
+        {{!-- {{#if this.events}}
          <form action='/map' method="GET">
             <input type="hidden" name="dayPlanId" value="{{this._id}}">
             <button class="display-map-btn" id="display-map-{{this._id}}" type="submit"> map </button>
         </form>
-        {{/if}}
+        {{/if}} --}}
         
         <h2>{{this.name}}</h2>
         <h3 class='splice-date'>{{this.date}}</h3>
