@@ -1,121 +1,217 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<article>
-    <input type=button onClick="location.href='../'" value='Back'>
 
-    <h2>{{selectedDate}}</h2>
+<div class="edit-dayplan-main">
+
+
+    <img src="/images/reduced-logo-white.png" alt="Epic planner logo,E white letter in red background">
+
+
+    <h1>{{selectedDate}}</h1>
     <div class="dayplan-fields-container">
-    <form action="/dayplan/save?_id={{dayPlanId}}" method="POST">
-        <label for="name">Dayplan name</label>
-        <input type="text" name='name' value='{{name}}' required>
-        <button class="dayplan-name-save-btn">SAVE</button>
-    </form>
-        <label class="location" for="location">Location</label>
-        <select class="districts" name= "location" required> 
-        <option value = "Barceloneta">Barceloneta</option>
-        <option value = "Forum">Forum</option>
-        <option value = "Gracia">Gracia</option>
-        <option value = "Horta-Guinardó-">Horta-Guinardó</option>
-        <option value = "Les Corts">Les Corts</option>
-        <option value = "Poble Nou">Poble Nou</option>
-        <option value = "Port Olimpic">Port Olimpic</option>
-        <option value = "Port Vell">Port Vell</option>
-        <option value = "Sant Andreu">Sant Andreu</option>
-        <option value = "Sants">Sants</option>
-        <option value = "Sant Martí">Sant Martí</option>
-        <option value = "Sarrià-Tibidabo">Sarrià-Tibidabo</option>
-    </select>
-    <section id='user-keywords'>
-        <p>Select your areas of interest</p>
-        <label for="music">Music</label>
-        <input type= "checkbox" name= "music" id='music-filter'>
+        <form action="/dayplan/save?_id={{dayPlanId}}" method="POST">
+            <label for="name">SAY MY NAME SAY MY NAME</label>
+            <input id="dayplan-name-input" type="text" name='name' value='{{dayPlanFound.name}}' required>
 
-        <label for="culture">Culture</label>
-        <input type= "checkbox" name= "culture" id='culture-filter'>
 
-        <label for="food">Food</label>
-        <input type= "checkbox" name= "food" id='food-filter'>
-    </section>
-    </div>
-    <div class="event-results-container">
-    <section class='ordered-results'>
-        {{#if eventsByDate}}
-            {{#each eventsByDate}}
-        <div class="event-result">
-           <div class="add-event-text-container">
-            <h4>{{this.eventName}}</h4>
-            <p>{{this.meetupLink}}</p>
-            <p>{{this.category}}</p>
-           </div> 
+            <section id='user-keywords'>
+                {{!-- <p>What's your deal?</p> --}}
+                <label for="music">Music</label>
+                <input type="checkbox" name="music" id='music-filter' checked>
 
-           <div class="event-btns-container">
-               <button id='add-event-{{this._id}}' class="add-event">+</button>
-               <script>
-                   var addEventBtn = document.querySelector(`#add-event-{{this._id}}`);
-                   addEventBtn.addEventListener('click',  (e) => {
-                        e.preventDefault();                                
-                        if (e.currentTarget.innerHTML === '+') {                            
-                            e.currentTarget.classList.remove("add-event");
-                            e.currentTarget.classList.add("delete-event");
-                            e.currentTarget.innerHTML = '-';
-                           axios.post(`/dayplan/save-event?eventId={{this._id}}&dayPlanId={{../dayPlanId}}`)
-                            .then(response => {
-                                console.log(`{{this.id}}`)
-                            })
-                            .catch((err) => {
-                                console.log('Error: ',err);                            });
-                            
+                <label for="culture">Culture</label>
+                <input type="checkbox" name="culture" id='culture-filter' checked>
 
-                        }else {
-                            e.currentTarget.classList.remove("delete-event");
-                            e.currentTarget.classList.add("add-event");
-                            e.currentTarget.innerHTML = '+';
-                            axios.post(`/dayplan/event-details/delete`, 
-                            {eventId : `{{this._id}}`, dayplanId : `{{../dayPlanId}}`  })
-                            .then(response => {
-                                console.log(`{{this.id}}`)
-                            })
-                            .catch((err) => {
-                                console.log('Error: ',err);                            });
-                        }
-                        
-                      
-                   });
-               </script>
-                <form action='/dayplan/event-details' method="GET"
-                >
-                <input type="hidden" name="_id" value="{{this.id}}" /> 
-                <input type="hidden" name="dayPlanId" value="{{dayPlanId}}">
-                <button id='event-info-{{this._id}}' class="event-info" type='submit'>info</button>
+                <label for="food">Food</label>
+                <input type="checkbox" name="food" id='food-filter' checked>
+            </section>
+
+            <div class="edit-dayplan-top-btns">
+                <form>
+                    <input type=button onClick="location.href='../'" value='Cancel'>
                 </form>
-                             
-           </div>
+                <button class="dayplan-name-save-btn">SAVE PLAN</button>
+            </div>
+    </div>
+>
+    <div class="event-results-container">
+        <section class='ordered-results'>
+            {{#if eventsByDate}}
+            {{#each eventsByDate}}
+            <div class="event-result">
+                <div class="add-event-text-container">
+                    <h4>{{this.eventName}}</h4>
+                    <p>{{this.meetupLink}}</p>
+                    <p>{{this.category}}</p>
+                </div>
+
+
+                     <div class="event-btns-container" id='buttons-container-{{this._id}}'>
+
+                    <input type="hidden" name="_id" value="{{this.id}}" />
+                    <input type="hidden" name="dayPlanId" value="{{dayPlanId}}">
+
+                    <button id='event-info-{{this._id}}' class="event-info" type='submit'>info</button>
+                    </form>
+                    <button id='add-event-{{this._id}}' class="add-event">+</button>
+
+                    <script>
+
+                        var addEventBtn = document.querySelector(`#add-event-{{this._id}}`);
+
+                        addEventBtn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            if (e.currentTarget.innerHTML === '+') {
+                                e.currentTarget.classList.remove("add-event");
+
+                                // display nearby places box
+                                const parent = document.querySelector(`#buttons-container-{{this._id}}`)
+                                const secondChild = document.querySelector(`#form-{{this._id}}`)
+                                const nearbyContainer = document.createElement('section');
+                                nearbyContainer.classList.add('nearby-container')
+                                nearbyContainer.innerHTML = `<p>Have an appetite? Check out nearby places?</p>`;
+
+                                const placesYesBtn = document.createElement('button');
+                                placesYesBtn.classList.add('places-yes-btn');
+                                placesYesBtn.innerHTML = 'Yes';
+                                placesYesBtn.addEventListener('click', (e) => {
+                                    e.preventDefault();
+
+                                    nearbyContainer.innerHTML = '';
+                                    nearbyContainer.innerHTML = `<h3 class="h3-places">Nearby places</h3>`
+
+                                    const barPlacesContainer = document.createElement('div');
+                                    barPlacesContainer.classList.add('bar-places-container');
+
+
+                                    var placeContainer = document.createElement('place-container');
+                                    placeContainer.classList.add('place-container');
+
+                                    placeContainer.innerHTML = `{{#each this.placesNearBy}}
+                                                                    <div class='places-nearby-info' id='place-{{this.name}}'>
+                                                                        <h4>{{this.name}}</h4>
+                                                                        <img style=“padding-right:10px; padding-bottom:10px;” src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference={{this.photo_reference}}&key=AIzaSyAx_wYlhBTq4m2KyFXyOTveiXlO89CG5hs'/>
+                                                                        <p>{{this.formatted_address}}</p>
+                                                                    </div>
+                                                                {{/each}}`;
+                                    
+                                    var placesArray = placeContainer.childNodes;
+                                    for (var i=0;i<placesArray.length;i++) {
+                                        placesArray[i].addEventListener('click', (e) => {
+                                            e.preventDefault();
+                                            var addPlaceToDayPlan = document.createElement('div');
+                                            addPlaceToDayPlan.classList.add('places-yes-btn');
+                                            addPlaceToDayPlan.innerHTML=`<p>Add this place to the Day Plan?</p>`;
+                                            var placesYesBtn2 = document.createElement('button');
+                                            placesYesBtn2.innerHTML = 'Yes';
+                                            addPlaceToDayPlan.appendChild(placesYesBtn2);
+                                            placesYesBtn2.addEventListener('click',(e) => {
+                                                console.log(e.currentTarget.parentElement.nextSibling.innerHTML);
+                                                e.preventDefault;
+                                                let placeName = e.currentTarget.parentElement.nextSibling.firstElementChild.innerHTML;
+                                                let placeAddress = e.currentTarget.parentElement.nextSibling.lastElementChild.innerHTML;
+                                                console.log('name',placeName,'place',placeAddress);
+                                                 axios.post(`/dayplan/save-event/dine`, 
+                                                    {dayPlanId : `{{../dayPlanId}}`,name:placeName,address:placeAddress,time:`{{this.endTime}}`  })
+                                                    .then(response => {
+                                                        console.log(e.currentTarget);
+//    element.parentNode.removeChild(element);
+                                                        nearbyContainer.parentNode.removeChild(nearbyContainer);
+
+                                                    })
+                                                    .catch((err) => {
+                                                        console.log('Error: ',err);                            });
+                                            });
+                                            var placesNoBtn2 = document.createElement('button');
+                                            placesNoBtn2.innerHTML = 'No';
+                                            addPlaceToDayPlan.appendChild(placesNoBtn2);
+                                            placesNoBtn2.addEventListener('click',(e) => {
+                                                e.preventDefault;
+                                                addPlaceToDayPlan.outerHTML = '';
+                                            })
+                                            //placeContainer.appendChild(addPlaceToDayPlan);
+                                            placeContainer.insertBefore(addPlaceToDayPlan,e.currentTarget);
+                                        });
+                                    }
+                                barPlacesContainer.appendChild(placeContainer);
+                                nearbyContainer.appendChild(barPlacesContainer);
+
+                            })
+                            const placesNoBtn = document.createElement('button');
+                            placesNoBtn.classList.add('places-no-btn');
+                            placesNoBtn.innerHTML = 'No';
+
+                                const placesBtnsContainer = document.createElement('div')
+                                placesBtnsContainer.classList.add('places-btns-container');
+                                placesBtnsContainer.appendChild(placesYesBtn);
+                                placesBtnsContainer.appendChild(placesNoBtn);
+                                nearbyContainer.appendChild(placesBtnsContainer);
+
+
+                                placesNoBtn.addEventListener('click', (e) => {
+                                    e.preventDefault();
+                                    parent.removeChild(nearbyContainer);
+                                })
+
+                                parent.insertBefore(nearbyContainer, secondChild);
+
+                                e.currentTarget.classList.add("delete-event");
+                                e.currentTarget.innerHTML = '-';
+                                axios.post(`/dayplan/save-event`,
+                                    { eventId: `{{this._id}}`, dayPlanId: `{{../dayPlanId}}` })
+                                    .then(response => {
+                                        console.log(`{{this.id}}`)
+                                    })
+                                    .catch((err) => {
+                                        console.log('Error: ', err);
+                                    });
+                            } else {
+                                e.currentTarget.classList.remove("delete-event");
+                                e.currentTarget.classList.add("add-event");
+                                e.currentTarget.innerHTML = '+';
+                                axios.post(`/dayplan/event-details/delete`,
+                                    { eventId: `{{this._id}}`, dayplanId: `{{../dayPlanId}}` })
+                                    .then(response => {
+                                        console.log(`{{this.id}}`)
+                                    })
+                                    .catch((err) => {
+                                        console.log('Error: ', err);
+                                    });
+                            }
+                        });
+                    </script>
+
+
+                    <form action='/dayplan/event-details' method="GET" id='form-{{this._id}}'>
+
+
+                </div>
             </div>
             {{/each}}
-        {{else}}
+            {{else}}
             <div id='no-events-message'>
                 <p>No events found for today!!!</p>
             </div>
-        {{/if}}
-    </section>
+            {{/if}}
+        </section>
     </div>
 
-</article>
 
+</div>
 <script>
     const cultureFilter = document.querySelector('#culture-filter');
     const musicFilter = document.querySelector('#music-filter');
     const foodFilter = document.querySelector('#food-filter');
-    musicFilter.addEventListener('change', (e) =>{
+    musicFilter.addEventListener('change', (e) => {
         e.preventDefault();
         activateFilters();
 
     });
-    foodFilter.addEventListener('change', (e) =>{
+    foodFilter.addEventListener('change', (e) => {
         e.preventDefault();
         activateFilters();
 
     });
-    cultureFilter.addEventListener('change', (e) =>{
+    cultureFilter.addEventListener('change', (e) => {
         e.preventDefault();
         activateFilters();
 
@@ -127,16 +223,16 @@
         const music = musicFilter.checked;
         const culture = cultureFilter.checked;
         const food = foodFilter.checked;
-        
+
 
         // use the classList API to remove and add classes
-            //div.classList.remove("foo");
-            //div.classList.add("anotherclass");
+        //div.classList.remove("foo");
+        //div.classList.add("anotherclass");
 
-      //  events.forEach((event) => {
-      //      console.log(event.childNodes[1].childNodes[5].innerHTML);
-       // })
-        for (let i=0;i<eventsArray.length;i++) {
+        //  events.forEach((event) => {
+        //      console.log(event.childNodes[1].childNodes[5].innerHTML);
+        // })
+        for (let i = 0; i < eventsArray.length; i++) {
             eventsArray[i].classList.add("no-display");
             if (music && eventsArray[i].childNodes[1].childNodes[5].innerHTML.includes('music')) {
                 eventsArray[i].classList.remove("no-display");
@@ -148,10 +244,8 @@
                 eventsArray[i].classList.remove("no-display");
             }
 
-            
-        }
 
-        //[""0""].childNodes[1].childNodes[5].innerHTML
+        }
 
     }
 </script>

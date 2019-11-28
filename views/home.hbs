@@ -1,62 +1,113 @@
-<h1>Day-plan</h1>
-<div class="home-main-container">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+<nav class="nav-interior">
+    <img src="/images/reduced-logo-white.png" alt="Epic planner logo,E white letter in red background">
+   
     <form action="/edit-profile" method="GET">
         <button class="edit-profile-btn">Edit profile</button>
     </form>
-    
-    <div class="dayplan-container">
 
-        {{#each dayPlanFound}} 
-        <div class="dayplan-card no-display">
+</nav>
 
-        <button class="edit-dayplan-btn" id="edit-dayplanId-{{this._id}}"> ✎ </button>
-       
-        <h2>{{this.name}}</h2>
-        <h4 class='splice-date'>{{this.date}}</h4>
-             
+
+<div class="home-main-container"></div>
+<h1>WHAT'S ON THE AGENDA?</h1>
+
+
+<div class="dayplan-container">
+
+    {{#if dayPlanFound}}
+
+    {{#each dayPlanFound}}
+
+    <div class="dayplan-card no-display">
         
-         {{#each this.events}}
-         <div class="event-text-container">
-        <p class="startTime">{{startTime}}h··</p>
-        <p><b>{{this.eventName}}</b></p>
-        <form action='/dayplan/event-details' method="GET">            
-            <input type="hidden" name="_id" value="{{this.id}}" /> 
-            <input type="hidden" name="sender" value="home" />
-            <input type="hidden" name="dayPlanId" value="{{../this._id}}"/>
-            <button id='event-info-{{this._id}}' class="event-info" type='submit'>info</button>
+        <div class="edit-map-btn-container">
+
+            {{#if this.events}}
+            <form action='/map' method="GET">
+                <input type="hidden" name="dayPlanId" value="{{this._id}}">
+                <button class="display-map-btn" id="display-map-{{this._id}}" type="submit"><img src="/../images/map-icon.png"> </button>
+            </form>
+            {{/if}}
+           
+
+        <form action='/dayplan/modify-dayplan' method="GET">
+            <input type="hidden" name="dayPlanId" value="{{this._id}}">
+            <button class="edit-dayplan-btn" id="edit-dayplanId-{{this._id}}" type="submit"><img src="/../images/edit-icon.png"></button>
         </form>
+ </div>
+
+
+        <form action='/dayplan/modify-dayplan/delete' method="POST">
+            <input type="hidden" name="dayPlanId" value="{{this._id}}">
+            <button class="delete-dayplan-btn" id="delete-dayplanId-{{this._id}}" type="submit">Delete Dayplan</button>
+        </form>
+           
+        {{#if this.events}}
+         <form action='/map' method="GET">
+            <input type="hidden" name="dayPlanId" value="{{this._id}}">
+            <button class="display-map-btn" id="display-map-{{this._id}}" type="submit"> map </button>
+        </form>
+        {{/if}}
         
+        <h2>{{this.name}}</h2>
+        <h3 class='splice-date'>{{this.date}}</h3>
+
+
+        {{#each this.events}}
+
+        <div class="saved-container">
+
+            <div class="event-text-container">
+                <p class="startTime">{{startTime}}h··</p>
+                <p><b>{{this.eventName}}</b></p>
+            </div>
+            <form action='/dayplan/event-details' method="GET">
+                <input type="hidden" name="_id" value="{{this.id}}" />
+                <input type="hidden" name="sender" value="home" />
+                <input type="hidden" name="dayPlanId" value="{{../this._id}}" />
+                <button id='event-info-{{this._id}}' class="event-info" type='submit'>info</button>
+            </form>
         </div>
-            {{/each}}
-        
+        {{/each}}
+
     </div>
     {{/each}}
-<h2>{{this.name}}</h2>
-<h4 class='splice-date'>{{this.date}}</h4>
 
-{{#each this.events}}
-<p><b>{{this.eventName}}</b></p> 
-<p>{{startTime}}</p>
-<form action='/dayplan/event-details' method="GET">            
-    <input type="hidden" name="_id" value="{{this.id}}" /> 
-    <input type="hidden" name="sender" value="home" />
-    <input type="hidden" name="dayPlanId" value="{{../this._id}}"/>
-    <button id='event-info-{{this._id}}' class="event-info" type='submit'>info</button>
-</form>
-{{/each}}
+    <h2>{{this.name}}</h2>
+    <h4 class='splice-date'>{{this.date}}</h4>
 
-    <div class="slider-buttons">
-    <button id='slider-left'> < </button>
-    <button id='slider-right'>></button>
-    </div>
-    
-    <hr>
-    <div class="add-dayplan-container">
-    <form action="/dayplan/select-date" method="GET">
-        <button>+ DAY PLAN</button>
+    {{#each this.events}}
+    <p><b>{{this.eventName}}</b></p>
+    <p>{{startTime}}</p>
+    <form action='/dayplan/event-details' method="GET">
+        <input type="hidden" name="_id" value="{{this.id}}" />
+        <input type="hidden" name="sender" value="home" />
+        <input type="hidden" name="dayPlanId" value="{{../this._id}}" />
+        <button id='event-info-{{this._id}}' class="event-info" type='submit'>info</button>
     </form>
-</div>
+
+
+    {{/each}}
+    <div class="slider-buttons">
+        <button id='slider-left'> < </button> <button id='slider-right'> >
+        </button>
+    </div>
+
+    {{else}}
+    <p>No plans? <br> Start being epic!</p>
+    <div class="slider-buttons">  <button id='slider-left' hidden="hidden">
+            < </button> <button id='slider-right' hidden="hidden"> >
+        </button>
+    </div>
+    {{/if}}
+   
+    <div class="add-dayplan-container">
+        <form action="/dayplan/select-date" method="GET">
+            <button>+ DAY PLAN</button>
+        </form>
+    </div>
     <script>
         //Format dates
         let dates = document.querySelectorAll('.splice-date');
@@ -71,7 +122,7 @@
         //Slider
         const cardsList = document.querySelectorAll('.dayplan-card');
         const cardsArray = [...cardsList];
-        cardsArray[0].setAttribute('class', 'dayplan-card dayplan-card-active');
+        if (cardsArray) cardsArray[0].setAttribute('class', 'dayplan-card dayplan-card-active');
 
         const sliderLeft = document.querySelector('#slider-left');
         const sliderRight = document.querySelector('#slider-right');
@@ -99,4 +150,5 @@
         });
     </script>
 
+</div>
 </div>

@@ -19,8 +19,12 @@ router.post('/', (req, res, next) => {
     
             
             User.updateOne({_id:userId}, {$set:{'fullName':fullName, 'email': email, 'keywords': keywords}})
-                .then (() => { 
-                    res.redirect('/');
+                .then ((updatedUser) => { 
+                    User.findOne({_id:userId})
+                        .then((userFound) => {
+                            req.session.currentUser = userFound;
+                            res.redirect('/');
+                        });
                 });    
 
 

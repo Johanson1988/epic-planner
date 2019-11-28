@@ -4,16 +4,17 @@ const Schema = mongoose.Schema;
 const eventSchema = new Schema({
     eventName: { type: String, required: true},  
     fullAddress: { type: String, required: true },
-    location: { type: String, enum: ["Barceloneta", "Forum", "Gracia", "Horta-Guinardó", "Les Corts", "Poble Nou","Port Olimpic", "Port Vell", "Sant Andreu", "Sants", "Sant Martí", "Sarrià-Tibidabo" ], required: true },
+    location: { type: String, enum: ["Barceloneta", "Forum", "Gracia", "Horta-Guinardó", "Les Corts", "Poble Nou","Port Olimpic", "Port Vell", "Sant Andreu", "Sants", "Sant Martí", "Sarrià-Tibidabo" ]},
  //   date: { type: Date, required: true },
  //   time: { type: Date, required: true },
-    date: { type: String, require: true},
+    date: { type: String, },
     startTime: { type: String, required: true},
-    endTime: { type: String, required: true },
+    endTime: { type: String},
     price: { type: String },
-    category: { type: String, enum: ["culture", "music", "workshop"], required: true  },
+    category: { type: String, enum: ["culture", "music", "food"], required: true  },
     coordinates: {type: {type: String, type: String} },
-    meetupLink: {type: String}
+    meetupLink: {type: String},
+    placesNearBy: {type: Array}
 },
 {
     timestamps: {

@@ -4,9 +4,12 @@ const editPlanRouter = require('./edit-dayplan');
 const saveDayPlanRouter = require('./save-dayplan');
 const saveEventRouter = require('./save-event');
 const eventDetailsRouter = require('./event-details');
+const modifyDayPlanRouter = require('./modify-dayplan')
 
 
 router.use('/edit-dayplan', editPlanRouter);
+
+router.use('/modify-dayplan', modifyDayPlanRouter)
 
 router.use('/event-details', eventDetailsRouter);
 
