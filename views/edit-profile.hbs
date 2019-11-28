@@ -1,22 +1,19 @@
 <h1>Profile</h1>
 
 <div class="profile-info">
-    <form action="/logout/delete-user" method="GET">
-        <button type='submit'>Delete User</button>
-    </form>
     <div class="avatar">
         <input type="checkbox" id="hack" />
         <label class="label-profile" for="hack"></label><br />
         {{!-- <img src="/images/avatar-Duncs.png"> --}}
     </div>
     <div class="profile-details">
-        <form action="/edit-profile" method="POST">
+        <form class="name-profile-labels" action="/edit-profile" method="POST">
 
-            <label for="fullName"></label>
+            <label class="profile-details-label" for="fullName"></label>
             <input type="text" name='fullName' value='{{currentUserData.fullName}}' required>
 
             <label for="email"></label>
-            <input type="text" name='email' value='{{currentUserData.email}}' required>
+            <input class="profile-details-label" type="text" name='email' value='{{currentUserData.email}}' required>
 
             <section id='user-keywords'>
                 <p>Select your areas of interest</p>
@@ -35,7 +32,9 @@
                 <button type='submit' id='save-profile-update' class="update-profile-info">Save</button>
 
             </div>
-
         </form>
+    <form action="/logout/delete-user" method="GET">
+        <button id ="delete-user-btn" type='submit'>Delete User</button>
+    </form>
     </div>
 </div>

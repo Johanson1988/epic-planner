@@ -327,6 +327,25 @@ h2 {
 }
 
 /* day-plan cards */
+.saved-container-no-plans {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    background-color: white;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+
+    border-radius: 6px;
+    padding-right: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+
+
 
 .dayplan-container {
     display: flex;
@@ -546,7 +565,7 @@ h2 {
     font-size: 16px;
     color: white;
 
-        border: none;
+    border: none;
     border-radius: 40px;
 }
 
@@ -648,8 +667,32 @@ h2 {
     text-align: center;
 }
 
+#delete-user-btn {
+    
+    text-align: center;
+
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 4px 20px;
+
+    background-color:#ec2c32;
+
+    font-family: "Open Sans", sans-serif;
+    font-weight: lighter;
+    font-size: 16px;
+    color: white;
+
+    border: none;
+    border-bottom: solid 2px white;
+    border-radius: 40px;
+
+
+}
+.name-profile-labels label {
+    margin: 25px 10px 0px 10px;
+}
 .profile-info input {
-    margin: 0 10px 0px 10px;
+    margin: 0px 10px 0px 10px;
     background-color: white;
     border: none;
     border-bottom: solid 1px #ec2c32;
@@ -670,7 +713,7 @@ h2 {
     position: relative; */
 }
 
-.profile-info button {
+#save-profile-update {
     margin-top: 10px;
     padding: 4px 20px;
 
