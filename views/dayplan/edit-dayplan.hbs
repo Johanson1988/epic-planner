@@ -46,11 +46,12 @@
 
 
                      <div class="event-btns-container" id='buttons-container-{{this._id}}'>
+                    <form action='/dayplan/event-details' method="GET" id='form-{{this._id}}'>
 
-                    <input type="hidden" name="_id" value="{{this.id}}" />
-                    <input type="hidden" name="dayPlanId" value="{{dayPlanId}}">
+                        <input type="hidden" name="_id" value="{{this.id}}" />
+                        <input type="hidden" name="dayPlanId" value="{{../dayPlanId}}">
 
-                    <button id='event-info-{{this._id}}' class="event-info" type='submit'>info</button>
+                        <button id='event-info-{{this._id}}' class="event-info" type='submit'>info</button>
                     </form>
                     <button id='add-event-{{this._id}}' class="add-event">+</button>
 
