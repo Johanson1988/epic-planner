@@ -1,16 +1,23 @@
+<div class= "main-select-date">
 
-
-<article class ="select-date-container">
+    <img src="/images/reduced-logo-white.png" alt="Epic planner logo,E white letter in red background">
+   
+   <article class ="select-date-container">
     
-<article>
-    <input type=button onClick="location.href='../'" value='Back'>
+<h1>Select Date</h1>
+   
+
     <form action="/dayplan/edit-dayplan"  method= "POST">
         <input type="date" name='day-plan-date'>
-        <button type="submit">Select Date</button>
+        <button type="submit">submit</button>
     </form>
+
+ <input id="back-date-btn" type=button onClick="location.href='../'" value='Back'>
 
     {{#if errorMessage}}
     <p>{{errorMessage}}</p>
     <!--TODO Insert here -->
     {{/if}}
 </article>
+
+</div>

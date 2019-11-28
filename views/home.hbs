@@ -1,7 +1,8 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <nav class="nav-interior">
-    <img src="/images/reduced-logo.png" alt="Epic planner logo,E white letter in red background">
+    <img src="/images/reduced-logo-white.png" alt="Epic planner logo,E white letter in red background">
+   
     <form action="/edit-profile" method="GET">
         <button class="edit-profile-btn">Edit profile</button>
     </form>
@@ -10,7 +11,7 @@
 
 
 <div class="home-main-container"></div>
-<h1>Day-plan</h1>
+<h1>WHAT'S ON THE AGENDA?</h1>
 
 
 <div class="dayplan-container">
@@ -26,14 +27,14 @@
             {{#if this.events}}
             <form action='/map' method="GET">
                 <input type="hidden" name="dayPlanId" value="{{this._id}}">
-                <button class="display-map-btn" id="display-map-{{this._id}}" type="submit"> map </button>
+                <button class="display-map-btn" id="display-map-{{this._id}}" type="submit"><img src="/../images/map-icon.png"> </button>
             </form>
             {{/if}}
            
 
         <form action='/dayplan/modify-dayplan' method="GET">
             <input type="hidden" name="dayPlanId" value="{{this._id}}">
-            <button class="edit-dayplan-btn" id="edit-dayplanId-{{this._id}}" type="submit"> ✎ </button>
+            <button class="edit-dayplan-btn" id="edit-dayplanId-{{this._id}}" type="submit"><img src="/../images/edit-icon.png"></button>
         </form>
  </div>
 
@@ -78,20 +79,18 @@
 
     {{/each}}
     <div class="slider-buttons">
-        <button id='slider-left'>
-            < </button> <button id='slider-right'> >
+        <button id='slider-left'> < </button> <button id='slider-right'> >
         </button>
     </div>
 
     {{else}}
     <p>No plans? <br> Start being epic!</p>
-    <div class="slider-buttons">
-        <button id='slider-left' hidden="hidden">
+    <div class="slider-buttons">  <button id='slider-left' hidden="hidden">
             < </button> <button id='slider-right' hidden="hidden"> >
         </button>
     </div>
     {{/if}}
-    <hr>
+   
     <div class="add-dayplan-container">
         <form action="/dayplan/select-date" method="GET">
             <button>+ DAY PLAN</button>
