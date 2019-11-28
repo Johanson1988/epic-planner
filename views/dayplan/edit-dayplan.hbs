@@ -86,13 +86,14 @@
 
                                     var placeContainer = document.createElement('place-container');
                                     placeContainer.classList.add('place-container');
-
+                                    
                                     placeContainer.innerHTML = `{{#each this.placesNearBy}}
                                                                     <div class='places-nearby-info' id='place-{{this.name}}'>
                                                                         <h4>{{this.name}}</h4>
-                                                                        <img style=“padding-right:10px; padding-bottom:10px;” src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference={{this.photo_reference}}&key=AIzaSyAx_wYlhBTq4m2KyFXyOTveiXlO89CG5hs'/>
+                                                                        <img style=“padding-right:10px; padding-bottom:10px;” src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference={{this.photos.0.photo_reference}}&key=AIzaSyAx_wYlhBTq4m2KyFXyOTveiXlO89CG5hs"/>
                                                                         <p>{{this.formatted_address}}</p>
                                                                     </div>
+                                                                    
                                                                 {{/each}}`;
                                     
                                     var placesArray = placeContainer.childNodes;
