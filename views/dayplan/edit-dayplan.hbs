@@ -10,7 +10,7 @@
         <button class="dayplan-name-save-btn">SAVE</button>
     </form>        
     <section id='user-keywords'>
-        <p>Select your areas of interest</p>
+        <p>What's your deal?</p>
         <label for="music">Music</label>
         <input type= "checkbox" name= "music" id='music-filter' checked>
 
@@ -32,15 +32,74 @@
             <p>{{this.category}}</p>
            </div> 
 
-           <div class="event-btns-container">
+           <div class="event-btns-container" id='buttons-container-{{this._id}}'>
                <button id='add-event-{{this._id}}' class="add-event">+</button>
+
                <script>
+
                    var addEventBtn = document.querySelector(`#add-event-{{this._id}}`);
 
                    addEventBtn.addEventListener('click',  (e) => {
                         e.preventDefault();                                
                         if (e.currentTarget.innerHTML === '+') {                            
                             e.currentTarget.classList.remove("add-event");
+                            
+                            // display nearby places box
+                            const parent = document.querySelector(`#buttons-container-{{this._id}}`)
+                            const secondChild = document.querySelector(`#form-{{this._id}}`)
+                            const nearbyContainer = document.createElement('section');
+                            nearbyContainer.classList.add('nearby-container')
+                            nearbyContainer.innerHTML = `<p>Have an appetite? Check out nearby places?</p>`;
+                            
+                            const placesYesBtn = document.createElement('button');
+                            placesYesBtn.classList.add('places-yes-btn');
+                            placesYesBtn.innerHTML = 'Yes';
+                            placesYesBtn.addEventListener('click', (e)=> {
+                                e.preventDefault();
+
+                                nearbyContainer.innerHTML = '';
+                                nearbyContainer.innerHTML = `<h3 class="h3-places">Nearby places</h3>`
+
+                                const barPlacesContainer = document.createElement('div');
+                                barPlacesContainer.classList.add('bar-places-container');
+
+       
+                                    var placeContainer = document.createElement('place-container');
+                                    placeContainer.classList.add('place-container');
+
+                                    placeContainer.innerHTML= `{{#each this.placesNearBy}}
+                                                                    <div class='places-nearby-info'>
+                                                                        <h4>{{this.name}}</h4>
+                                                                        <img style=“padding-right:10px; padding-bottom:10px;” src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference={{this.photo_reference}}&key=AIzaSyAx_wYlhBTq4m2KyFXyOTveiXlO89CG5hs'>
+                                                                    </div>                              
+                                                                {{/each}}`;
+                                    barPlacesContainer.appendChild(placeContainer);
+                                nearbyContainer.appendChild(barPlacesContainer);
+
+                            })
+
+
+
+
+
+                            const placesNoBtn = document.createElement('button');
+                            placesNoBtn.classList.add('places-no-btn');
+                            placesNoBtn.innerHTML = 'No';
+
+                            const placesBtnsContainer = document.createElement('div')
+                            placesBtnsContainer.classList.add('places-btns-container');
+                            placesBtnsContainer.appendChild(placesYesBtn);
+                            placesBtnsContainer.appendChild(placesNoBtn);
+                            nearbyContainer.appendChild(placesBtnsContainer);
+
+
+                            placesNoBtn.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                parent.removeChild(nearbyContainer);
+                            } )
+
+                            parent.insertBefore(nearbyContainer, secondChild);
+
                             e.currentTarget.classList.add("delete-event");
                             e.currentTarget.innerHTML = '-';
                             axios.post(`/dayplan/save-event`, 
@@ -62,12 +121,11 @@
                             .catch((err) => {
                                 console.log('Error: ',err);                            });
                         }
-                        
-                      
-                   });
+                              });
                </script>
-                <form action='/dayplan/event-details' method="GET"
-                >
+
+
+                <form action='/dayplan/event-details' method="GET" id='form-{{this._id}}'>
                 <input type="hidden" name="_id" value="{{this.id}}" /> 
                 <input type="hidden" name="dayPlanId" value="{{dayPlanId}}">
                 <button id='event-info-{{this._id}}' class="event-info" type='submit'>info</button>
@@ -136,7 +194,8 @@
             
         }
 
-        //[""0""].childNodes[1].childNodes[5].innerHTML
-
     }
 </script>
+
+
+
