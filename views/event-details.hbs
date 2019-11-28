@@ -12,7 +12,23 @@
         
      
         {{else}}
-        <button>ADD</button>
+        <button id='event-details-delete' type="submit">+</button>
+        </form>
+        <script>
+            const addButton = document.querySelector('#event-details-delete');
+            addButton.addEventListener(('click'), (e) => {
+                console.log(`{{selectedEvent._id}}`,`{{dayPlanId}}`);
+                axios.post('/dayplan/save-event', {eventId:`{{selectedEvent._id}}`, dayPlanId:`{{dayPlanId}}`})
+                .then(() => {
+                    console.log('OK');
+                })
+                .catch((err) => console.error(err));
+                addButton.outerHTML = `<p>Added To the DayPlan</p>`
+            })
+            
+        </script>
+        
+
         {{/if}}
     </div>
     <section>
